@@ -30,7 +30,12 @@ namespace InteractableFeature.Runtime
         {
 	        if (_state is not IngredientState.Raw) return;
 
-	        _state = IngredientState.Chopped;
+	        _chopPercentage += 0.2f;
+
+	        if (_chopPercentage >= 1)
+	        {
+		        _state = IngredientState.Chopped;
+	        }
         }
 
     	#endregion
@@ -42,6 +47,8 @@ namespace InteractableFeature.Runtime
     	#region Private and Protected Members
 
         [SerializeField] private IngredientType _ingredientType;
+
+        private float _chopPercentage;
         
         private IngredientState _state;
 
