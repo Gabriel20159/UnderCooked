@@ -23,6 +23,7 @@ namespace OrderFeature.Runtime
         {
             _possibleIngredientsList = new []{"tomato","salad"};
             _recipe = new string[2];
+            
             for (var index = 0; index < _recipe.Length; index++)
             {
                 int randInt = Random.Range(0, 2);
