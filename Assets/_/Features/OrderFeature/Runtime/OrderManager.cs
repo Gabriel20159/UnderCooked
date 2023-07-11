@@ -35,14 +35,13 @@ namespace OrderFeature.Runtime
         }
 
         #endregion
-
-
+        
         #region Main Methods
 
         private IEnumerator SpawnOrder()
         {
             ClientOrder order = Instantiate(_orderTemplate, transform);
-            order.m_timeRemaining = _orderTimer;
+            order.TimeRemaining = _orderTimer;
             m_orderList.Add(order);
             
             m_onOrder?.Invoke(this, EventArgs.Empty);

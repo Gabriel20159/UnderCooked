@@ -1,7 +1,4 @@
-﻿using System;
-using Codice.CM.Common;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {

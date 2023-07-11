@@ -1,6 +1,4 @@
-
-using System.Collections;
-using System.Collections.Generic;
+using InteractableFeature.Runtime;
 using UnityEngine;
 
 namespace OrderFeature.Runtime
@@ -10,27 +8,43 @@ namespace OrderFeature.Runtime
     {
         #region Public Members
 
-        [SerializeField] string[] _possibleIngredientsList;
-        [SerializeField] string[] _recipe;
-        public float m_timeRemaining;
-        
+        public float TimeRemaining
+        {
+            get => _timeRemaining;
+            set => _timeRemaining = value;
+        }
+
+        public IngredientType[] Recipe
+        {
+            get => _recipe;
+            set => _recipe = value;
+        }
+
         #endregion
-        
-        
+
         #region Unity API
         
         private void OnEnable()
         {
-            _possibleIngredientsList = new []{"tomato","salad"};
-            _recipe = new string[2];
+            Recipe = new IngredientType[2];
             
-            for (var index = 0; index < _recipe.Length; index++)
+            for (var index = 0; index < Recipe.Length; index++)
             {
                 int randInt = Random.Range(0, 2);
-                _recipe[index] = _possibleIngredientsList[randInt];
+                Recipe[index] = _possibleIngredientsList[randInt];
             }
         }
 
+        #endregion
+        
+        #region Private and Protected
+        
+        [SerializeField] private IngredientType[] _recipe;
+        
+        private float _timeRemaining;
+
+        private readonly IngredientType[] _possibleIngredientsList = { IngredientType.Tomato,IngredientType.Salad };
+        
         #endregion
     }
 }
