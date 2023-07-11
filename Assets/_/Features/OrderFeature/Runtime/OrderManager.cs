@@ -10,7 +10,8 @@ namespace OrderFeature.Runtime
         #region Public Members
 
         public static OrderManager m_instance;
-        
+        public EventHandler<EventArgs> m_onOrder;
+
         public List<ClientOrder> m_orderList;
 
         #endregion
@@ -43,6 +44,8 @@ namespace OrderFeature.Runtime
             ClientOrder order = Instantiate(_orderTemplate, transform);
             order.m_timeRemaining = _orderTimer;
             m_orderList.Add(order);
+            
+            m_onOrder?.Invoke(this, EventArgs.Empty);
             
             yield return new WaitForSeconds(_orderSpawnRate);
             StartCoroutine(SpawnOrder());
