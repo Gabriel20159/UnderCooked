@@ -17,7 +17,7 @@ namespace HUDFeature.Runtime
         #endregion Unity API
 
         #region Main Methods
-        private void OnPauseEventHandler(bool state)
+        public void OnPauseEventHandler(bool state)
         {
             _PauseMenu.SetActive(state);
         }

@@ -1,3 +1,4 @@
+using GameManagerFeature.Runtime;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace HUDFeature.Runtime
 
         private void Start()
         {
+            ScoreManager.m_instance.OnScoreChanged += OnScoreChangeEventHandler;
         }
 
         #endregion Unity API

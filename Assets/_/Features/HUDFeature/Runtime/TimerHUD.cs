@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameManagerFeature.Runtime;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -9,26 +11,21 @@ namespace HUDFeature.Runtime
     public class TimerHUD : MonoBehaviour
     {
         #region Public Members
-
-        public float m_timeRemaining = 60;
+        
 
         #endregion Public Members
 
         #region Unity API
 
-        void Update()
+        private void Start()
         {
-            m_timeRemaining -= Time.deltaTime;
+            TimeManager.m_instance.m_onTimeChanged += OnTimeChangedEventHandler;
+        }
 
-
-            if (m_timeRemaining <= 0)
-            {
-                m_timeRemaining = 0;
-                Debug.Log("Temps écoulé");
-            }
-
-            float minutes = Mathf.FloorToInt(m_timeRemaining / 60);
-            float seconds = Mathf.FloorToInt(m_timeRemaining % 60);
+        private void OnTimeChangedEventHandler(float time)
+        {
+            float minutes = Mathf.FloorToInt(time / 60);
+            float seconds = Mathf.FloorToInt(time % 60);
 
             _TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }

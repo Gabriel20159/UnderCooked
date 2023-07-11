@@ -11,6 +11,7 @@ namespace GameManagerFeature.Runtime
         public static TimeManager m_instance;
 
         public event Action m_onTimeUp;
+        public event Action<float> m_onTimeChanged;
 
         public float m_gameTime = 180f;
 
@@ -41,6 +42,7 @@ namespace GameManagerFeature.Runtime
             if (_timeLeft > 0)
             {
                 _timeLeft -= Time.deltaTime;
+                m_onTimeChanged?.Invoke(_timeLeft);
                 if (_timeLeft <= 0)
                 {
                     m_onTimeUp?.Invoke();
