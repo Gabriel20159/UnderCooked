@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using InputFeature.Runtime;
 using UnityEngine;
 
 namespace PlayerFeature.Runtime
@@ -7,29 +9,24 @@ namespace PlayerFeature.Runtime
     {
 	    #region Public Members
 
-		
-
 	    #endregion
 
 
 	    #region Unity API
 
-	    // private void FixedUpdate()
-	    // {
-		   //  if (Input.GetButtonDown("Fire1"))
-		   //  {
-			  //   Interact();
-		   //  }
-	    // }
+	    private void Start()
+	    {
+		    InputManager.m_instance.m_onTake += OnInteractionEventHandler;
+	    }
 
 	    private void OnTriggerEnter(Collider other)
 	    {
-		    _interactibleObjectInRange.Add(other.gameObject);
+		    _interactableObjectInRange.Add(other.gameObject);
 	    }
 
 	    private void OnTriggerExit(Collider other)
 	    {
-		    _interactibleObjectInRange.Remove(other.gameObject);
+		    _interactableObjectInRange.Remove(other.gameObject);
 	    }
 
 	    #endregion
@@ -37,32 +34,41 @@ namespace PlayerFeature.Runtime
 
 	    #region Main Methods
 
-	    // private void Interact()
-	    // {
-		   //  if (_interactibleObjectInRange is null) return;
-	    //
-		   //  foreach (var VARIABLE in COLLECTION)
-		   //  {
-			  //   
-		   //  }
-		   //  
-		   //  _currentInteractibleObject = _interactibleObjectInRange;
-	    // }
+	    private void OnInteractionEventHandler(object sender, EventArgs e)
+	    {
+		    if (_interactableObjectInRange.Count == 0
+		        || _currentInteractable is not null) return;
 
+		    GameObject closestGameObject = _interactableObjectInRange[0];
+		    
+		    foreach (var interactable in _interactableObjectInRange)
+		    {
+			    if (Vector3.Distance(interactable.transform.position, transform.position) < 
+			        Vector3.Distance(closestGameObject.transform.position, transform.position))
+			    {
+				    closestGameObject = interactable;
+			    }
+		    }
+		    _currentInteractable = closestGameObject;
+		    _currentInteractable.transform.SetParent(_holdAnchor);
+		    _currentInteractable.transform.position = _holdAnchor.position;
+		    _currentInteractable.GetComponent<Rigidbody>().isKinematic = true;
+		    
+		    // else if (_currentInteractable is not null)
+		    // {
+			   //  
+		    // }
+	    }
+	    
 	    #endregion
-
-
-	    #region Utils
-
-
-
-	    #endregion
-
-
+	    
+	    
 	    #region Private and Protected Members
+	    
+	    [SerializeField] private Transform _holdAnchor;
 
-	    private List<GameObject> _interactibleObjectInRange;
-	    private GameObject _currentInteractibleObject;
+	    private List<GameObject> _interactableObjectInRange = new();
+	    private GameObject _currentInteractable;
 
 	    #endregion
     }
