@@ -1,17 +1,13 @@
 using System;
 using System.Collections.Generic;
 using InputFeature.Runtime;
+using InteractableFeature.Runtime;
 using UnityEngine;
 
 namespace PlayerFeature.Runtime
 {
     public class PlayerInteraction : MonoBehaviour
     {
-	    #region Public Members
-
-	    #endregion
-
-
 	    #region Unity API
 
 	    private void Start()
@@ -21,12 +17,18 @@ namespace PlayerFeature.Runtime
 
 	    private void OnTriggerEnter(Collider other)
 	    {
-		    _interactableObjectInRange.Add(other.gameObject);
+		    if (other.TryGetComponent(out Interactable interactable))
+		    {
+			    _interactablesInRange.Add(interactable);
+		    }
 	    }
 
 	    private void OnTriggerExit(Collider other)
 	    {
-		    _interactableObjectInRange.Remove(other.gameObject);
+		    if (other.TryGetComponent(out Interactable interactable))
+		    {
+			    _interactablesInRange.Remove(interactable);
+		    }
 	    }
 
 	    #endregion
@@ -36,28 +38,63 @@ namespace PlayerFeature.Runtime
 
 	    private void OnInteractionEventHandler(object sender, EventArgs e)
 	    {
-		    if (_interactableObjectInRange.Count == 0
-		        || _currentInteractable is not null) return;
+		    Interactable closestInteractable = GetClosestInteractable();
 
-		    GameObject closestGameObject = _interactableObjectInRange[0];
-		    
-		    foreach (var interactable in _interactableObjectInRange)
+		    if (closestInteractable is null) return;
+
+		    switch (closestInteractable)
 		    {
-			    if (Vector3.Distance(interactable.transform.position, transform.position) < 
-			        Vector3.Distance(closestGameObject.transform.position, transform.position))
+			    case Pickable pickable:
+				    HoldPickable(pickable);
+				    break;
+			    case Furniture furniture:
+				    InteractWithFurniture(furniture);
+				    break;
+		    }
+	    }
+
+	    private Interactable GetClosestInteractable()
+	    {
+		    if (_interactablesInRange.Count == 0) return null;
+
+		    Interactable closestInteractable = _interactablesInRange[0];
+		    
+		    foreach (var interactable in _interactablesInRange)
+		    {
+			    if (Vector3.Distance(interactable.transform.position, transform.position) <
+			        Vector3.Distance(closestInteractable.transform.position, transform.position))
 			    {
-				    closestGameObject = interactable;
+				    closestInteractable = interactable;
 			    }
 		    }
-		    _currentInteractable = closestGameObject;
-		    _currentInteractable.transform.SetParent(_holdAnchor);
-		    _currentInteractable.transform.position = _holdAnchor.position;
-		    _currentInteractable.GetComponent<Rigidbody>().isKinematic = true;
 		    
-		    // else if (_currentInteractable is not null)
-		    // {
-			   //  
-		    // }
+		    return closestInteractable;
+	    }
+
+	    private void HoldPickable(Pickable pickable)
+	    {
+		    if (_currentPickable is not null) return;
+
+		    _interactablesInRange.Remove(pickable);
+		    _currentPickable = pickable;
+		    _currentPickable.transform.SetParent(_holdAnchor);
+		    _currentPickable.transform.position = _holdAnchor.position;
+		    _currentPickable.GetComponent<Rigidbody>().isKinematic = true;
+	    }
+
+	    private void InteractWithFurniture(Furniture furniture)
+	    {
+		    if (furniture.CurrentPickable && _currentPickable is null)
+		    {
+			    _currentPickable = furniture.GetPickable();
+			    _currentPickable.transform.SetParent(_holdAnchor);
+			    _currentPickable.transform.localPosition = Vector3.zero;
+		    }
+		    else if (_currentPickable is not null)
+		    {
+			    furniture.Interact(_currentPickable);
+			    _currentPickable = null;
+		    }
 	    }
 	    
 	    #endregion
@@ -67,8 +104,8 @@ namespace PlayerFeature.Runtime
 	    
 	    [SerializeField] private Transform _holdAnchor;
 
-	    private List<GameObject> _interactableObjectInRange = new();
-	    private GameObject _currentInteractable;
+	    private List<Interactable> _interactablesInRange = new();
+	    private Pickable _currentPickable;
 
 	    #endregion
     }

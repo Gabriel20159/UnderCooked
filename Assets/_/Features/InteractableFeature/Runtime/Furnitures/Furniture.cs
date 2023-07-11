@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using Codice.CM.Common;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace InteractableFeature.Runtime
 {
@@ -6,12 +9,20 @@ namespace InteractableFeature.Runtime
     {
         #region Public Members
 
-        public Pickable m_pickable;
+        public Pickable CurrentPickable
+        {
+            get => _currentPickable;
+            set => _currentPickable = value;
+        }
 
         #endregion
 
         #region Unity API
 
+        private void Awake()
+        {
+            _currentPickable = _containerAnchor.GetComponentInChildren<Pickable>();
+        }
 
         #endregion
 
@@ -19,16 +30,18 @@ namespace InteractableFeature.Runtime
 
         public override void Interact(Pickable pickable)
         {
-            if (m_pickable is not null) return;
+            if (CurrentPickable is not null) return;
                 
-            m_pickable = pickable;
-            pickable.transform.parent = _container;
+            CurrentPickable = pickable;
+            pickable.transform.parent = _containerAnchor;
             pickable.transform.localPosition = Vector3.zero;
         }
 
         public Pickable GetPickable()
         {
-            return _container.GetComponentInChildren<Pickable>();
+            Pickable pickable = _containerAnchor.GetComponentInChildren<Pickable>();
+            CurrentPickable = null;
+            return pickable;
         }
 
         #endregion
@@ -39,7 +52,9 @@ namespace InteractableFeature.Runtime
 
         #region Private and Protected Members
 
-        [SerializeField] protected Transform _container;
+        [SerializeField] protected Transform _containerAnchor;
+
+        private Pickable _currentPickable;
 
         #endregion
     }

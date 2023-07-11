@@ -2,7 +2,7 @@
 
 namespace InteractableFeature.Runtime
 {
-    public class counter : Furniture
+    public class Counter : Furniture
     {
         #region Public Members
 

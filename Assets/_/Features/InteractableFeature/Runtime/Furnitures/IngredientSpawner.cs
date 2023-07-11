@@ -20,9 +20,9 @@ namespace InteractableFeature.Runtime
         {
             base.Interact(pickable);
 
-            if (_container.childCount != 0) return;
+            if (_containerAnchor.childCount != 0) return;
 
-            Instantiate(_ingredientPrefab, _container);
+            Instantiate(_ingredientPrefab, _containerAnchor);
         }
 
         #endregion

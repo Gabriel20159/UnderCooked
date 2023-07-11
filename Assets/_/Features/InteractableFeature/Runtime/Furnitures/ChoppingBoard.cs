@@ -19,9 +19,8 @@ namespace InteractableFeature.Runtime
         public override void Interact(Pickable pickable)
         {
             base.Interact(pickable);
-            if (pickable as Ingredient)
+            if (pickable is Ingredient ingredient)
             {
-                Ingredient ingredient = (Ingredient)pickable;
                 ingredient.Chop();
             }
                 
