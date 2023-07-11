@@ -31,6 +31,7 @@ Transform:
   - {fileID: 3801710435946836393}
   - {fileID: 3801710435384525944}
   - {fileID: 625906698929544677}
+  - {fileID: 1959227676144038950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -169,3 +170,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PauseMenu: {fileID: 0}
+--- !u!1 &8873553555280608839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959227676144038950}
+  - component: {fileID: 3807225844015328992}
+  m_Layer: 0
+  m_Name: OrderSpawnerHUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959227676144038950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873553555280608839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8333328640599340425}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3807225844015328992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873553555280608839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216fffced49dd7945a565fb29c3d7b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orderPrefab: {fileID: 9180522302492735025, guid: dfadc128ac95cbf42912e978352c4426,
+    type: 3}
+  _orderCanvas: {fileID: 0}

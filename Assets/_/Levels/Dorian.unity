@@ -457,17 +457,17 @@ PrefabInstance:
     - target: {fileID: 8333328640599340425, guid: af079ca29bcd1654d94801c30337d0c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.94721
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333328640599340425, guid: af079ca29bcd1654d94801c30337d0c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 165.29947
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333328640599340425, guid: af079ca29bcd1654d94801c30337d0c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.8492171
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333328640599340425, guid: af079ca29bcd1654d94801c30337d0c1,
         type: 3}
@@ -513,6 +513,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 88147138, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 88147138, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374721157, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374721157, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 472992570, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 472992570, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 700289205, guid: 7472ea2e1879bdf458f177dae1bb32d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
