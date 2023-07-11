@@ -3,7 +3,8 @@
     "rootNamespace": "HUDFeature.Runtime",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:fbb94ae578e07e94fa710a28de35a620"
+        "GUID:fbb94ae578e07e94fa710a28de35a620",
+        "GUID:b6a4b41ac734b4b40b444ca1fa73f41e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

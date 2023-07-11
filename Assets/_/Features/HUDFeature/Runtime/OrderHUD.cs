@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,12 @@ namespace HUDFeature.Runtime
         #endregion Public Members
 
         #region Unity API
+
+        private void Start()
+        {
         
+        }
+
         #endregion Unity API
 
         #region Main Methods
@@ -27,6 +31,10 @@ namespace HUDFeature.Runtime
         #endregion Utils
 
         #region Private and Protected Members
+
+        [SerializeField] private Sprite _tomato;
+        [SerializeField] private Sprite _salad;
+
         #endregion Private and Protected Members
     }
 }

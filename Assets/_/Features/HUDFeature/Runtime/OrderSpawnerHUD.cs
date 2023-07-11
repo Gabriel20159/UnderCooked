@@ -1,3 +1,5 @@
+using System;
+using OrderFeature.Runtime;
 using UnityEngine;
 
 namespace HUDFeature.Runtime
@@ -9,6 +11,11 @@ namespace HUDFeature.Runtime
         #endregion Public Members
 
         #region Unity API
+
+        private void Start()
+        {
+         //   OrderManager.m_instance
+        }
 
         #endregion Unity API
 
