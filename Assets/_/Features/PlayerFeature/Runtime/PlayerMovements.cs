@@ -1,3 +1,4 @@
+using InputFeature.Runtime;
 using UnityEngine;
 
 namespace PlayerFeature.Runtime
@@ -11,9 +12,14 @@ namespace PlayerFeature.Runtime
 	        _rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void FixedUpdate()
+        private void Start()
         {
-	        MovePlayer();
+	        InputManager.m_instance.m_onMove += MovePlayerEventHandler;
+        }
+
+        private void Update()
+        {
+	        HandleMovements();
         }
 
         #endregion
@@ -21,12 +27,14 @@ namespace PlayerFeature.Runtime
 
     	#region Main Methods
 
-        private void MovePlayer()
+        private void MovePlayerEventHandler(object sender, OnMoveEventArgs e)
         {
-	        float horizontalInput = Input.GetAxisRaw("Horizontal");
-	        float verticalInput = Input.GetAxisRaw("Vertical");
+	        _moveInput = e.m_direction;
+        }
 
-	        Vector3 movementDirection = new Vector3(verticalInput, 0, -horizontalInput);
+        private void HandleMovements()
+        {
+	        Vector3 movementDirection = new Vector3(_moveInput.x, 0, _moveInput.y);
 
 	        _rigidbody.velocity += movementDirection * (_speed * Time.deltaTime);
 
@@ -46,6 +54,8 @@ namespace PlayerFeature.Runtime
         [SerializeField] private float _smoothness;
         
         private Rigidbody _rigidbody;
+
+        private Vector2 _moveInput;
 
         #endregion
     }
