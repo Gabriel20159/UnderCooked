@@ -16,6 +16,13 @@ namespace GameManagerFeature.Runtime
 
         public int StarCount { get { return _starCount; } }
 
+        [SerializeField]
+        private int _firstThreshold;
+        [SerializeField]
+        private int _secondThreshold;
+        [SerializeField]
+        private int _thirdThreshold;
+
         #endregion
 
         #region Unity API
@@ -36,11 +43,11 @@ namespace GameManagerFeature.Runtime
 
         public void UpdateStarCount(int score)
         {
-            if (score >= 35)
+            if (score >= _thirdThreshold)
                 _starCount = 3;
-            else if (score >= 25)
+            else if (score >= _secondThreshold)
                 _starCount = 2;
-            else if (score >= 15)
+            else if (score >= _firstThreshold)
                 _starCount = 1;
             else
                 _starCount = 0;
