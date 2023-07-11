@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,20 +10,25 @@ namespace OrderFeature.Runtime
     {
         #region Public Members
 
-        // public Ingredients[] _possibleIngredientsList;
-        // public Ingredients[] _recipe;
-        // public float _timeRemaining;
-        //
-        // #endregion
-        //
-        //
-        // #region Unity API
-        //
-        // private void OnEnable()
-        // {
-        //     _recipe = new Ingredients[2];
-        //     
-        // }
+        [SerializeField] string[] _possibleIngredientsList;
+        [SerializeField] string[] _recipe;
+        public float m_timeRemaining;
+        
+        #endregion
+        
+        
+        #region Unity API
+        
+        private void OnEnable()
+        {
+            _possibleIngredientsList = new []{"tomato","salad"};
+            _recipe = new string[2];
+            for (var index = 0; index < _recipe.Length; index++)
+            {
+                int randInt = Random.Range(0, 2);
+                _recipe[index] = _possibleIngredientsList[randInt];
+            }
+        }
 
         #endregion
     }
