@@ -27,6 +27,7 @@ namespace HUDFeature.Runtime
         public void OnNewOrderEventHandler(object sender, EventArgs eventArgs)
         {
             GameObject order = Instantiate(_orderPrefab, _orderCanvas.transform, true);
+            order.transform.localScale = Vector3.one;
         }
 
         #endregion Main Methods

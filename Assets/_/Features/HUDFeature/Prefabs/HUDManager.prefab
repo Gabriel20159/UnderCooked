@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216fffced49dd7945a565fb29c3d7b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ordersHUD: []
   _orderPrefab: {fileID: 9180522302492735025, guid: dfadc128ac95cbf42912e978352c4426,
     type: 3}
   _orderCanvas: {fileID: 0}

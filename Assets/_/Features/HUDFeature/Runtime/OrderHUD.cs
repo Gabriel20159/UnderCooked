@@ -1,7 +1,10 @@
+using System;
+using InteractableFeature.Runtime;
 using OrderFeature.Runtime;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using OrderFeature;
 
 namespace HUDFeature.Runtime
 {
@@ -20,31 +23,55 @@ namespace HUDFeature.Runtime
 
         private void Start()
         {
-            // var ingredientOne = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count]
-            //     .recipes[0];
-            // var ingredientTwo = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count]
-            //     .recipes[0];
+            var ingredientOne = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count -1].Recipe[0];
+            var ingredientTwo = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count-1].Recipe[1];;
 
+            var time = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].TimeRemaining;
+            
+            m_timeSlider.minValue = 0;
+            m_timeSlider.maxValue = time;
+            m_timeSlider.value = m_timeSlider.maxValue;
+            
             switch (ingredientOne)
             {
-                case "tomato":
+                case IngredientType.Tomato:
                     m_orderIngredientOne.sprite = _tomatoIngredient;
                     break;
 
-                case "salad":
+                case IngredientType.Salad:
                     m_orderIngredientOne.sprite = _saladIngredient;
                     break;
             }
             
             switch (ingredientTwo)
             {
-                case "tomato":
+                case IngredientType.Tomato:
                     m_orderIngredientTwo.sprite = _tomatoIngredient;
                     break;
 
-                case "salad":
+                case IngredientType.Salad:
                     m_orderIngredientTwo.sprite = _saladIngredient;
                     break;
+            }
+
+            if (ingredientOne == IngredientType.Tomato ||ingredientTwo == IngredientType.Tomato )
+            {
+                m_orderImage.sprite = _saladTomato;
+
+            }
+            else
+            {
+                m_orderImage.sprite = _salad;
+            }
+            
+        }
+
+        private void Update()
+        {
+            m_timeSlider.value -= Time.deltaTime;
+            if (m_timeSlider.value<=0)
+            {
+                Destroy(gameObject);
             }
         }
 
