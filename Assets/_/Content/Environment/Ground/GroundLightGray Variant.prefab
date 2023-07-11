@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 4357172329220798151, guid: 818826664401dbf459a127889415655e,
         type: 3}
       propertyPath: m_Name
-      value: GroundGreyLight
+      value: GroundLightGray Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818826664401dbf459a127889415655e, type: 3}
