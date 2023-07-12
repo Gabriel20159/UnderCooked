@@ -230,4 +230,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 100
-  _smoothness: 0.1
+  _smoothness: 0.3

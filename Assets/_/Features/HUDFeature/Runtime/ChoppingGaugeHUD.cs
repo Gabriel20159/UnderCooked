@@ -1,4 +1,3 @@
-using System;
 using InteractableFeature.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +9,7 @@ namespace HUDFeature.Runtime
     	#region Public Members
 
         public Slider m_gauge;
-
-
+        
     	#endregion
 
 
@@ -20,6 +18,7 @@ namespace HUDFeature.Runtime
         private void Start()
         {
 	        _ingredient.m_onChopValueChanged += OnGaugeHUDEventHandler;
+	        gameObject.SetActive(false);
         }
 
         #endregion
@@ -29,15 +28,14 @@ namespace HUDFeature.Runtime
 
         private void OnGaugeHUDEventHandler(object sender, float chopPercentage)
         {
+	        gameObject.SetActive(true);
 	        m_gauge.value = chopPercentage;
+
+	        if (chopPercentage >= 1)
+	        {
+		        gameObject.SetActive(false);
+	        }
         }
-
-    	#endregion
-
-
-    	#region Utils
-
-
 
     	#endregion
 

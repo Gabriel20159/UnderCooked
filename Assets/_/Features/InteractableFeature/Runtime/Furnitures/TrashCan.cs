@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PickableFeature.Runtime;
+using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
@@ -18,7 +19,16 @@ namespace InteractableFeature.Runtime
 
         public override void Interact(Pickable pickable)
         {
-            Destroy(pickable.gameObject);
+            if (pickable is null) return;
+            
+            if (pickable is Plate plate)
+            {
+                plate.Empty();
+            }
+            else
+            {
+                Destroy(pickable.gameObject);
+            }
         }
 
         #endregion

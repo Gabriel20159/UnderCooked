@@ -1,6 +1,6 @@
 using System;
+using PickableFeature.Runtime;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace InteractableFeature.Runtime
 {
@@ -21,10 +21,14 @@ namespace InteractableFeature.Runtime
     	#region Public Members
 
         public EventHandler<float> m_onChopValueChanged;
-        
-        [HideInInspector] public float m_chopPercentage;
 
-    	#endregion
+        public IngredientType Type
+        {
+	        get => _ingredientType;
+	        set => _ingredientType = value;
+        }
+
+        #endregion
 
     	#region Unity API
 
@@ -35,15 +39,13 @@ namespace InteractableFeature.Runtime
         public void Chop()
         {
 	        if (_state is not IngredientState.Raw) return;
+	        
+	        _chopPercentage += 0.2f;
+	        m_onChopValueChanged?.Invoke(this, _chopPercentage);
 
-	        _gauge.gameObject.SetActive(true);
-	        m_chopPercentage += 0.2f;
-	        m_onChopValueChanged?.Invoke(this, m_chopPercentage);
-
-	        if (m_chopPercentage >= 1)
+	        if (_chopPercentage >= 1)
 	        {
 		        _state = IngredientState.Chopped;
-		        _gauge.SetActive(false);
 	        }
         }
 
@@ -56,9 +58,10 @@ namespace InteractableFeature.Runtime
     	#region Private and Protected Members
 
         [SerializeField] private IngredientType _ingredientType;
-        [FormerlySerializedAs("_canvas")] [SerializeField] private GameObject _gauge;
         
         private IngredientState _state;
+        
+        private float _chopPercentage;
 
         #endregion
     }

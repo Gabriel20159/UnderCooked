@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using InputFeature.Runtime;
 using InteractableFeature.Runtime;
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace PlayerFeature.Runtime
@@ -45,9 +46,6 @@ namespace PlayerFeature.Runtime
 
 		    switch (closestInteractable)
 		    {
-			    case Pickable pickable:
-				    HoldPickable(pickable);
-				    break;
 			    case Furniture furniture:
 				    InteractWithFurniture(furniture);
 				    break;
@@ -86,20 +84,13 @@ namespace PlayerFeature.Runtime
 		    return closestInteractable;
 	    }
 
-	    private void HoldPickable(Pickable pickable)
-	    {
-		    if (_currentPickable is not null) return;
-
-		    _interactablesInRange.Remove(pickable);
-		    _currentPickable = pickable;
-		    _currentPickable.transform.SetParent(_holdAnchor);
-		    _currentPickable.transform.position = _holdAnchor.position;
-		    _currentPickable.GetComponent<Rigidbody>().isKinematic = true;
-	    }
-
 	    private void InteractWithFurniture(Furniture furniture)
 	    {
-		    if (furniture.CurrentPickable && _currentPickable is null)
+		    if (furniture is IngredientSpawner && furniture.CurrentPickable is null && _currentPickable is null)
+		    {
+			    furniture.Interact(_currentPickable);
+		    }
+		    if (furniture.CurrentPickable is not null && _currentPickable is null)
 		    {
 			    _currentPickable = furniture.GetPickable();
 			    _currentPickable.transform.SetParent(_holdAnchor);
@@ -107,8 +98,21 @@ namespace PlayerFeature.Runtime
 		    }
 		    else if (_currentPickable is not null)
 		    {
-			    furniture.Interact(_currentPickable);
-			    _currentPickable = null;
+			    switch (furniture.CurrentPickable)
+			    {
+				    case Plate plate when _currentPickable is Ingredient ingredient:
+					    plate.AddIngredient(ingredient);
+					    _currentPickable = null;
+					    break;
+				    case null:
+					    furniture.Interact(_currentPickable);
+					    if (furniture is TrashCan && _currentPickable is Plate)
+					    {
+						    return;
+					    }
+					    _currentPickable = null;
+					    break;
+			    }
 		    }
 	    }
 
@@ -129,7 +133,7 @@ namespace PlayerFeature.Runtime
 	    
 	    [SerializeField] private Transform _holdAnchor;
 
-	    private List<Interactable> _interactablesInRange = new();
+	    private readonly List<Interactable> _interactablesInRange = new();
 	    private Pickable _currentPickable;
 
 	    #endregion

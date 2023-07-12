@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace HUDFeature.Runtime
@@ -5,6 +6,11 @@ namespace HUDFeature.Runtime
     public class UtilsHUD : MonoBehaviour
     {
     	#region Unity API
+
+        private void Awake()
+        {
+	        _cameraTransform = Camera.main.transform;
+        }
 
         private void LateUpdate()
         {
@@ -16,7 +22,7 @@ namespace HUDFeature.Runtime
         
     	#region Private and Protected Members
 
-        [SerializeField] private Transform _cameraTransform;
+        private Transform _cameraTransform;
 
         #endregion
     }
