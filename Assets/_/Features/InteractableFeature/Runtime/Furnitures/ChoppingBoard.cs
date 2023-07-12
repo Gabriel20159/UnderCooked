@@ -1,7 +1,4 @@
-﻿using PickableFeature.Runtime;
-using UnityEngine;
-
-namespace InteractableFeature.Runtime
+﻿namespace InteractableFeature.Runtime
 {
     public class ChoppingBoard : Furniture
     {
@@ -17,15 +14,12 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public void ChopIngredient()
         {
-            base.Interact(pickable);
-            if (pickable is Ingredient ingredient)
+            if (_currentPickable is Ingredient ingredient)
             {
                 ingredient.Chop();
             }
-                
-            // TODO Chopchopchop if time
         }
 
         #endregion
@@ -37,6 +31,7 @@ namespace InteractableFeature.Runtime
 
         #region Private and Protected Members
 
+        
 
         #endregion
     }

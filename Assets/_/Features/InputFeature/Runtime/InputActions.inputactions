@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "8cde4040-3ee6-4ea3-afe7-dae3231e90d5",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Use",
@@ -37,7 +37,7 @@
                 {
                     "name": "2D Vector",
                     "id": "30d9f411-6753-450f-b375-c039cc89a2b6",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -92,7 +92,7 @@
                 {
                     "name": "2D Vector",
                     "id": "50d3fd8a-becb-4e74-a2f9-ed0ac69d9ac0",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

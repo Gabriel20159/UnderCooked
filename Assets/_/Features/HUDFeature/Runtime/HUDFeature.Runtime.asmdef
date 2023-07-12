@@ -1,7 +1,13 @@
 {
     "name": "HUDFeature.Runtime",
     "rootNamespace": "HUDFeature.Runtime",
-    "references": [],
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:fbb94ae578e07e94fa710a28de35a620",
+        "GUID:b6a4b41ac734b4b40b444ca1fa73f41e",
+        "GUID:8e67eaf67e6c68b46bfe0e46ebe60218",
+        "GUID:c2dae9e75516edd4a83fd728c0cb6127"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

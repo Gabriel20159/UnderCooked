@@ -1,3 +1,4 @@
+using System;
 using PickableFeature.Runtime;
 using UnityEngine;
 
@@ -19,13 +20,15 @@ namespace InteractableFeature.Runtime
     {
     	#region Public Members
 
+        public EventHandler<float> m_onChopValueChanged;
+
         public IngredientType Type
         {
 	        get => _ingredientType;
 	        set => _ingredientType = value;
         }
-        
-    	#endregion
+
+        #endregion
 
     	#region Unity API
 
@@ -36,8 +39,14 @@ namespace InteractableFeature.Runtime
         public void Chop()
         {
 	        if (_state is not IngredientState.Raw) return;
+	        
+	        _chopPercentage += 0.2f;
+	        m_onChopValueChanged?.Invoke(this, _chopPercentage);
 
-	        _state = IngredientState.Chopped;
+	        if (_chopPercentage >= 1)
+	        {
+		        _state = IngredientState.Chopped;
+	        }
         }
 
     	#endregion
@@ -51,6 +60,8 @@ namespace InteractableFeature.Runtime
         [SerializeField] private IngredientType _ingredientType;
         
         private IngredientState _state;
+        
+        private float _chopPercentage;
 
         #endregion
     }

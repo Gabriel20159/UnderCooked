@@ -14,6 +14,7 @@ namespace PlayerFeature.Runtime
 	    private void Start()
 	    {
 		    InputManager.m_instance.m_onTake += OnInteractionEventHandler;
+		    InputManager.m_instance.m_onUse += OnUseEventHandler;
 	    }
 
 	    private void OnTriggerEnter(Collider other)
@@ -49,6 +50,20 @@ namespace PlayerFeature.Runtime
 				    InteractWithFurniture(furniture);
 				    break;
 		    }
+	    }
+
+	    private void OnUseEventHandler(object sender, EventArgs e)
+	    {
+		    Interactable closestInteractable = GetClosestInteractable();
+
+		    if (closestInteractable is ChoppingBoard choppingBoard)
+		    {
+			    UseChoppingBoard(choppingBoard);
+		    }
+		    // else if (closestInteractable is Sink sink)
+		    // {
+			   //  UseSink(sink);
+		    // }
 	    }
 
 	    private Interactable GetClosestInteractable()
@@ -100,6 +115,16 @@ namespace PlayerFeature.Runtime
 			    }
 		    }
 	    }
+
+	    private void UseChoppingBoard(ChoppingBoard choppingBoard)
+	    {
+		    choppingBoard.ChopIngredient();
+	    }
+
+	    // private void UseSink(Sink sink)
+	    // {
+		   //  sink.
+	    // }
 	    
 	    #endregion
 	    
