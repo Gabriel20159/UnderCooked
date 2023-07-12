@@ -40,7 +40,8 @@ namespace PlayerFeature.Runtime
 
 	        if (movementDirection != Vector3.zero)
 	        {
-		        transform.forward = Vector3.Lerp(transform.forward, movementDirection, _smoothness);
+		        //transform.forward = Vector3.Lerp(transform.forward, movementDirection, _smoothness);
+		        transform.rotation = Quaternion.LookRotation(movementDirection);
 	        }
         }
         

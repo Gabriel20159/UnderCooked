@@ -51,7 +51,7 @@ namespace InteractableFeature.Runtime
 
         [SerializeField] protected Transform _containerAnchor;
 
-        private Pickable _currentPickable;
+        protected Pickable _currentPickable;
 
         #endregion
     }
