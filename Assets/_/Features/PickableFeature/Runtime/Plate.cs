@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using PickableFeature.Runtime;
+using _.Features.PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
-    public class Plate : Pickable
+    public class Plate : Dish
     {
         #region Public Members
 
@@ -35,7 +35,7 @@ namespace InteractableFeature.Runtime
             return true;
         }
 
-        public void Empty()
+        public override void Empty()
         {
             if (DirtyPercentage > 0) return;
             

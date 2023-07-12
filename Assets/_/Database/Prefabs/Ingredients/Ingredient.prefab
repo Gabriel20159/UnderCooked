@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ingredientType: 1
+  _meshChopped: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &5846834037864731345
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _.Features.PickableFeature.Runtime;
 using InputFeature.Runtime;
 using InteractableFeature.Runtime;
 using PickableFeature.Runtime;
@@ -109,6 +110,7 @@ namespace PlayerFeature.Runtime
 			    _currentPickable = furniture.GetPickable();
 			    _currentPickable.transform.SetParent(_holdAnchor);
 			    _currentPickable.transform.localPosition = Vector3.zero;
+			    _currentPickable.transform.localRotation = _holdAnchor.rotation;
 		    }
 		    else if (_currentPickable is not null)
 		    {
@@ -120,6 +122,20 @@ namespace PlayerFeature.Runtime
 						    _currentPickable = null;
 					    }
 					    break;
+				    
+				    case Plate plate when _currentPickable is Saucepan pan:
+					    if (!pan.HasIngredient) return;
+					    if (!pan.IsCooked) return;
+					    plate.AddIngredient(pan.GetSoup());
+					    break;
+				    
+				    case Saucepan pan when _currentPickable is Ingredient ingredient:
+					    if (pan.HasIngredient) break;
+					    if (ingredient.State != IngredientState.Chopped) break;
+					    pan.AddIngredient(ingredient);
+					    _currentPickable = null;
+					    break;
+				    
 				    case null:
 					    if (furniture is Sink && _currentPickable is not Plate)
 					    {
@@ -128,7 +144,7 @@ namespace PlayerFeature.Runtime
 					    bool destroyCurrentPickable = furniture.Interact(_currentPickable);
 					    if (furniture is TrashCan && _currentPickable is Plate)
 					    {
-						    return;
+						    break;
 					    }
 
 					    if (destroyCurrentPickable)
