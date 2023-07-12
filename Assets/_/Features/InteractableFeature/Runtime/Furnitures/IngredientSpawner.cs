@@ -20,7 +20,7 @@ namespace InteractableFeature.Runtime
         public override bool Interact(Pickable pickable)
         {
             base.Interact(pickable);
-
+            
             if (_containerAnchor.childCount != 0) return false;
             
             CurrentPickable = Instantiate(_ingredientPrefab, _containerAnchor).GetComponent<Ingredient>();

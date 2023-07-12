@@ -25,16 +25,13 @@ namespace InteractableFeature.Runtime
 
         public override bool Interact(Pickable pickable)
         {
-            if (pickable is not Plate plate) return false;
+            if (pickable is not Plate plate || plate.DirtyPercentage <= 0) return false;
             
-            if (plate.DirtyPercentage > 0)
-            {
-                _dirtyPlates.Add(plate);
-                pickable.transform.SetParent(_containerAnchor);
-                pickable.transform.localPosition = Vector3.zero;
-            }
-
+            _dirtyPlates.Add(plate);
+            pickable.transform.SetParent(_containerAnchor);
+            pickable.transform.localPosition = Vector3.zero;
             return true;
+
         }
 
         public void StartCleaning()

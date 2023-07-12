@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using _.Features.PickableFeature.Runtime;
 using InputFeature.Runtime;
 using InteractableFeature.Runtime;
 using PickableFeature.Runtime;
@@ -99,6 +98,10 @@ namespace PlayerFeature.Runtime
 		    return closestInteractable;
 	    }
 
+	    /// <summary>
+	    /// This whole method is pure garbage.
+	    /// </summary>
+	    /// <param name="furniture"></param>
 	    private void InteractWithFurniture(Furniture furniture)
 	    {
 		    if (furniture is IngredientSpawner && furniture.CurrentPickable is null && _currentPickable is null)
@@ -142,6 +145,10 @@ namespace PlayerFeature.Runtime
 						    return;
 					    }
 					    bool destroyCurrentPickable = furniture.Interact(_currentPickable);
+					    if (furniture is IngredientSpawner) // This is pure garbage
+					    {
+						    destroyCurrentPickable = true;
+					    }
 					    if (furniture is TrashCan && _currentPickable is Plate)
 					    {
 						    break;
