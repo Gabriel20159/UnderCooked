@@ -1,7 +1,7 @@
 {
     "name": "InteractableFeature.Runtime",
     "rootNamespace": "InteractableFeature.Runtime",
-    "references": [],
+    "references": ["GUID:c2dae9e75516edd4a83fd728c0cb6127","GUID:b6a4b41ac734b4b40b444ca1fa73f41e"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

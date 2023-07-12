@@ -1,3 +1,4 @@
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
@@ -18,6 +19,12 @@ namespace InteractableFeature.Runtime
     {
     	#region Public Members
 
+        public IngredientType Type
+        {
+	        get => _ingredientType;
+	        set => _ingredientType = value;
+        }
+        
     	#endregion
 
     	#region Unity API

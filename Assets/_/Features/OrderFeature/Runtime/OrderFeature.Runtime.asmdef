@@ -1,7 +1,10 @@
 {
     "name": "OrderFeature.Runtime",
     "rootNamespace": "OrderFeature.Runtime",
-    "references": ["GUID:8e67eaf67e6c68b46bfe0e46ebe60218"],
+    "references": [
+        "GUID:c2dae9e75516edd4a83fd728c0cb6127",
+        "GUID:fbb94ae578e07e94fa710a28de35a620"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

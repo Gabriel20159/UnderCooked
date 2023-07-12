@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using OrderFeature.Runtime;
+using PickableFeature.Runtime;
 
 namespace InteractableFeature.Runtime
 {
@@ -16,6 +17,13 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
+        public override void Interact(Pickable pickable)
+        {
+            if (pickable is Plate plate)
+            {
+                OrderManager.m_instance.CheckPlate(plate);
+            }
+        }
 
         #endregion
 

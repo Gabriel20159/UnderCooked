@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PickableFeature.Runtime;
+using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
@@ -21,8 +22,8 @@ namespace InteractableFeature.Runtime
             base.Interact(pickable);
 
             if (_containerAnchor.childCount != 0) return;
-
-            Instantiate(_ingredientPrefab, _containerAnchor);
+            
+            CurrentPickable = Instantiate(_ingredientPrefab, _containerAnchor).GetComponent<Ingredient>();
         }
 
         #endregion
