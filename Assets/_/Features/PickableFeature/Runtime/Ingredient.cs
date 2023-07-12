@@ -52,6 +52,7 @@ namespace InteractableFeature.Runtime
 	        if (_chopPercentage >= 1)
 	        {
 		        State = IngredientState.Chopped;
+		        GetComponent<MeshFilter>().mesh = _meshChopped;
 	        }
         }
 
@@ -64,6 +65,7 @@ namespace InteractableFeature.Runtime
     	#region Private and Protected Members
 
         [SerializeField] private IngredientType _ingredientType;
+        [SerializeField] private Mesh _meshChopped;
         
         private IngredientState _state;
         
