@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using OrderFeature.Runtime;
+using PickableFeature.Runtime;
 
 namespace InteractableFeature.Runtime
 {
-    public class Pickable : Interactable
+    public class Counter : Furniture
     {
         #region Public Members
 
@@ -11,15 +12,18 @@ namespace InteractableFeature.Runtime
 
         #region Unity API
 
-        public override void Interact(Pickable pickable)
-        {
-            throw new System.NotImplementedException();
-        }
 
         #endregion
 
         #region Main Methods
 
+        public override void Interact(Pickable pickable)
+        {
+            if (pickable is Plate plate)
+            {
+                OrderManager.m_instance.CheckPlate(plate);
+            }
+        }
 
         #endregion
 

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace InteractableFeature.Runtime
+namespace PickableFeature.Runtime
 {
-    public class Dish : Pickable
+    public abstract class Pickable : MonoBehaviour
     {
         #region Public Members
 
@@ -10,7 +10,6 @@ namespace InteractableFeature.Runtime
         #endregion
 
         #region Unity API
-
 
         #endregion
 

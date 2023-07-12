@@ -1,3 +1,4 @@
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime

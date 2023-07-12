@@ -32,6 +32,7 @@ namespace GameManagerFeature.Runtime
         }
 
         #endregion
+        
         #region Main Methods
 
         public void AddScore(int amount)

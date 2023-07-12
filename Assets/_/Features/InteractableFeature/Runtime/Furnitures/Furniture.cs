@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PickableFeature.Runtime;
+using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
@@ -27,8 +28,8 @@ namespace InteractableFeature.Runtime
 
         public override void Interact(Pickable pickable)
         {
-            if (CurrentPickable is not null) return;
-                
+            if (CurrentPickable is not null || pickable is null) return;
+            
             CurrentPickable = pickable;
             pickable.transform.parent = _containerAnchor;
             pickable.transform.localPosition = Vector3.zero;
@@ -51,7 +52,7 @@ namespace InteractableFeature.Runtime
 
         [SerializeField] protected Transform _containerAnchor;
 
-        private Pickable _currentPickable;
+        protected Pickable _currentPickable;
 
         #endregion
     }
