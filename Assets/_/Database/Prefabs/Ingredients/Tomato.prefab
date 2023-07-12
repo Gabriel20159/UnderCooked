@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5846834037864731181, guid: fdd87fb123e00814cb6c080dc79b6381,
         type: 3}
       propertyPath: m_Name
-      value: Salad
+      value: Tomato
       objectReference: {fileID: 0}
     - target: {fileID: 5846834037864731344, guid: fdd87fb123e00814cb6c080dc79b6381,
         type: 3}
@@ -67,5 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5846834037864731347, guid: fdd87fb123e00814cb6c080dc79b6381,
+        type: 3}
+      propertyPath: _meshChopped
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd87fb123e00814cb6c080dc79b6381, type: 3}

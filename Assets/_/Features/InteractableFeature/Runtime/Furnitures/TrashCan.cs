@@ -1,4 +1,5 @@
-﻿using PickableFeature.Runtime;
+﻿using _.Features.PickableFeature.Runtime;
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
@@ -17,18 +18,20 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
-            if (pickable is null) return;
+            if (pickable is null) return false;
             
-            if (pickable is Plate plate)
+            if (pickable is Dish dish)
             {
-                plate.Empty();
+                dish.Empty();
             }
             else
             {
                 Destroy(pickable.gameObject);
             }
+
+            return true;
         }
 
         #endregion

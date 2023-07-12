@@ -17,7 +17,8 @@ namespace InputFeature.Runtime
         public static InputManager m_instance;
 
         public EventHandler<OnMoveEventArgs> m_onMove;
-        public EventHandler m_onUse;
+        public EventHandler m_onUseStarted;
+        public EventHandler m_onUseCanceled;
         public EventHandler m_onTake;
         public EventHandler m_onDash;
 
@@ -43,10 +44,14 @@ namespace InputFeature.Runtime
 
         public void OnUseEventHandler(InputAction.CallbackContext context)
         {
-            if (!context.started) return;
-
-            m_onUse?.Invoke(this,EventArgs.Empty);
-            
+            if (context.started)
+            {
+                m_onUseStarted?.Invoke(this,EventArgs.Empty);
+            }
+            else if (context.canceled)
+            {
+                m_onUseCanceled?.Invoke(this,EventArgs.Empty);
+            }
         }
 
         public void OnTakeEventHandler(InputAction.CallbackContext context)
