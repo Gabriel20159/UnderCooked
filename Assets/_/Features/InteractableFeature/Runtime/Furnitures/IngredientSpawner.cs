@@ -21,9 +21,10 @@ namespace InteractableFeature.Runtime
         {
             base.Interact(pickable);
             
-            if (_containerAnchor.childCount != 0) return false;
+            Pickable currentPickable = GetPickable();
+            if (currentPickable is not null) return true;
             
-            CurrentPickable = Instantiate(_ingredientPrefab, _containerAnchor).GetComponent<Ingredient>();
+            Instantiate(_ingredientPrefab, _containerAnchor);
             return true;
         }
 

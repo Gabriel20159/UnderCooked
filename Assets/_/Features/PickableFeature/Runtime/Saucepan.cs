@@ -23,7 +23,6 @@ namespace InteractableFeature.Runtime
         }
 
         #endregion
-        
 
         #region Main Methods
 
@@ -37,13 +36,14 @@ namespace InteractableFeature.Runtime
             _meshRenderer.material.color = _sauceColor;
         }
 
-        public override void AddIngredient(Ingredient ingredientToAdd)
+        public override bool AddIngredient(Ingredient ingredientToAdd)
         {
-            if (HasIngredient) return;
-            if (ingredientToAdd.Type != IngredientType.Tomato) return;
-            if (ingredientToAdd.State != IngredientState.Chopped) return;
+            if (HasIngredient
+                || ingredientToAdd.Type != IngredientType.Tomato
+                || ingredientToAdd.State != IngredientState.Chopped) return false;
 
             Fill(ingredientToAdd);
+            return true;
         }
 
         public override void Empty()
@@ -97,7 +97,6 @@ namespace InteractableFeature.Runtime
         
         #endregion
 
-        
         #region Private and Protected Members
         
         [SerializeField] private GameObject _soupPrefab; 
