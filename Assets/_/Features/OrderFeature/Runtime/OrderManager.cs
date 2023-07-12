@@ -28,12 +28,15 @@ namespace OrderFeature.Runtime
 
         private void Awake()
         {
-            if (m_instance is not null)
+            if (m_instance == null)
             {
-                Destroy(this);
-                return;
+                m_instance = this;
             }
-            m_instance = this;
+            else
+            {
+                Destroy(gameObject);
+            }
+            
         }
 
         private void Start()
@@ -43,13 +46,18 @@ namespace OrderFeature.Runtime
 
         private void Update()
         {
+            List<ClientOrder> ordersToDelete = new();
+            
             foreach (var order in m_orderList)
             {
-                if (order.TimeRemaining < -5f)
-                {
-                    RemoveFromWaitList(order);
-                }
                 order.TimeRemaining -= Time.deltaTime;
+                if (order.TimeRemaining > -5f) return;
+                ordersToDelete.Add(order);
+            }
+
+            foreach (var order in ordersToDelete)
+            {
+               m_orderList.RemoveAt(m_orderList.IndexOf(order));
             }
         }
 
