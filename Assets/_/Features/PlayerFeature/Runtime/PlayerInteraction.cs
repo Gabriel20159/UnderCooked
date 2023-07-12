@@ -104,11 +104,18 @@ namespace PlayerFeature.Runtime
 					    plate.AddIngredient(ingredient);
 					    _currentPickable = null;
 					    break;
+				    
+				    case Saucepan pan when _currentPickable is Ingredient ingredient:
+					    if (pan.Ingredient is null) break;
+					    pan.AddIngredient(ingredient);
+					    _currentPickable = null;
+					    break;
+				    
 				    case null:
 					    furniture.Interact(_currentPickable);
 					    if (furniture is TrashCan && _currentPickable is Plate)
 					    {
-						    return;
+						    break;
 					    }
 					    _currentPickable = null;
 					    break;
