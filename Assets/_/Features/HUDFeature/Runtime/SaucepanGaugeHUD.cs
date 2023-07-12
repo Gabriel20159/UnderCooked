@@ -30,8 +30,8 @@ namespace HUDFeature.Runtime
         {
 	        gameObject.SetActive(true);
 	        m_gauge.value = chopPercentage;
-
-	        if (chopPercentage >= 1)
+	 
+	        if (chopPercentage is >= 1 or 0)
 	        {
 		        gameObject.SetActive(false);
 	        }
