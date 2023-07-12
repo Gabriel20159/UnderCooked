@@ -33,6 +33,7 @@ namespace InteractableFeature.Runtime
             CurrentPickable = pickable;
             pickable.transform.parent = _containerAnchor;
             pickable.transform.localPosition = Vector3.zero;
+            pickable.transform.localRotation = _containerAnchor.rotation;
         }
 
         public Pickable GetPickable()

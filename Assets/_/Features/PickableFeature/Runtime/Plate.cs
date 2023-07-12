@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using PickableFeature.Runtime;
+using _.Features.PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
-    public class Plate : Pickable
+    public class Plate : Dish
     {
         #region Public Members
 
@@ -19,14 +19,14 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public void AddIngredient(Ingredient ingredientToAdd)
+        public override void AddIngredient(Ingredient ingredientToAdd)
         {
             IngredientCombo.Add(ingredientToAdd);
             ingredientToAdd.transform.SetParent(_containerAnchor);
             ingredientToAdd.transform.localPosition = new Vector3(0, (IngredientCombo.Count - 1) * 1, 0);
         }
 
-        public void Empty()
+        public override void Empty()
         {
             for (int i = 0; i < _containerAnchor.childCount; i++)
             {
