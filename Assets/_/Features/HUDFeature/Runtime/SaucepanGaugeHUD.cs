@@ -9,16 +9,16 @@ namespace HUDFeature.Runtime
     	#region Public Members
 
         public Slider m_gauge;
-        
+
     	#endregion
 
 
     	#region Unity API
 
-        private void Start()
+        void Start()
         {
-	        _saucepan.m_onCookValueChanged += OnGaugeHUDEventHandler;
-	        gameObject.SetActive(false);
+            _saucepan.m_onCookValueChanged += OnGaugeHUDEventHandler;
+            gameObject.SetActive(false);
         }
 
         #endregion
@@ -26,15 +26,11 @@ namespace HUDFeature.Runtime
 
     	#region Main Methods
 
-        private void OnGaugeHUDEventHandler(object sender, float chopPercentage)
+        void OnGaugeHUDEventHandler(object sender, float chopPercentage)
         {
-	        gameObject.SetActive(true);
-	        m_gauge.value = chopPercentage;
-	 
-	        if (chopPercentage is >= 1 or 0)
-	        {
-		        gameObject.SetActive(false);
-	        }
+            m_gauge.value = chopPercentage;
+
+            gameObject.SetActive(chopPercentage is not (>= 1 or 0));
         }
 
     	#endregion
@@ -42,7 +38,8 @@ namespace HUDFeature.Runtime
 
     	#region Private and Protected Members
 
-        [SerializeField] private Saucepan _saucepan;
+        [SerializeField]
+        Saucepan _saucepan;
 
         #endregion
     }
