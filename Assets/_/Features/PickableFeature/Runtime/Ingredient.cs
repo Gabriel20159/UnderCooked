@@ -28,6 +28,12 @@ namespace InteractableFeature.Runtime
 	        set => _ingredientType = value;
         }
 
+        public IngredientState State
+        {
+	        get => _state;
+	        set => _state = value;
+        }
+
         #endregion
 
     	#region Unity API
@@ -38,14 +44,14 @@ namespace InteractableFeature.Runtime
 
         public void Chop()
         {
-	        if (_state is not IngredientState.Raw) return;
+	        if (State is not IngredientState.Raw) return;
 	        
 	        _chopPercentage += 0.2f;
 	        m_onChopValueChanged?.Invoke(this, _chopPercentage);
 
 	        if (_chopPercentage >= 1)
 	        {
-		        _state = IngredientState.Chopped;
+		        State = IngredientState.Chopped;
 	        }
         }
 
