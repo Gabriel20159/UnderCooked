@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e192d4eed19f36240bbc8e97071b4ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soupPrefab: {fileID: 2177759991703833706, guid: c3b9b78bc08522b41b54568e95520d53,
+    type: 3}
   _sauce: {fileID: 7218922571955307339}
   _sauceColor: {r: 0.764151, g: 0.082903184, b: 0.082903184, a: 1}
   _burnedColor: {r: 0.2264151, g: 0.13914183, b: 0.05446778, a: 1}

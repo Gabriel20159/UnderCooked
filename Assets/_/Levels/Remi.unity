@@ -1716,11 +1716,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 449468122}
     m_Modifications:
-    - target: {fileID: 189089126, guid: 08e6e22ebda98664791531789bd31353, type: 3}
-      propertyPath: _soupPrefab
-      value: 
-      objectReference: {fileID: 2177759991703833706, guid: c3b9b78bc08522b41b54568e95520d53,
-        type: 3}
     - target: {fileID: 7218922571134714816, guid: 08e6e22ebda98664791531789bd31353,
         type: 3}
       propertyPath: m_Name
