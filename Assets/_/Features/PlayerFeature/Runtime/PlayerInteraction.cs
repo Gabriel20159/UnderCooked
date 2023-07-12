@@ -106,8 +106,15 @@ namespace PlayerFeature.Runtime
 					    _currentPickable = null;
 					    break;
 				    
+				    case Plate plate when _currentPickable is Saucepan pan:
+					    if (!pan.IsCooked) return;
+					    plate.AddIngredient(pan.GetSoup());
+					    _currentPickable = null;
+					    break;
+				    
 				    case Saucepan pan when _currentPickable is Ingredient ingredient:
-					    if (pan.Ingredient is not null) break;
+					    if (pan.Ingredient != null) break;
+					    if (ingredient.State != IngredientState.Chopped) break;
 					    pan.AddIngredient(ingredient);
 					    _currentPickable = null;
 					    break;

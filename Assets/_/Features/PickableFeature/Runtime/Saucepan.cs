@@ -16,6 +16,12 @@ namespace InteractableFeature.Runtime
             set => _ingredient = value;
         }
 
+        public bool IsCooked
+        {
+            get => _isCooked;
+            set => _isCooked = value;
+        }
+
         #endregion
         
 
@@ -33,7 +39,9 @@ namespace InteractableFeature.Runtime
 
         public override void AddIngredient(Ingredient ingredientToAdd)
         {
-            if (Ingredient != null && ingredientToAdd.Type != IngredientType.Tomato) return;
+            if (Ingredient == null && ingredientToAdd.Type != IngredientType.Tomato) return;
+            if (ingredientToAdd.State != IngredientState.Chopped) return;
+
             Fill(ingredientToAdd);
         }
 
@@ -48,13 +56,13 @@ namespace InteractableFeature.Runtime
             _cookPercentage += Time.deltaTime / _timeToCook;
             m_onCookValueChanged?.Invoke(this, _cookPercentage);
 
-            if (_cookPercentage >= 1 + _cookPercentage * _timeToCook / _timeToBurn)
+            if (_cookPercentage >= 1 + (_timeToBurn * _timeToCook))
             {
                 Burn();
             }
             else if (_cookPercentage >= 1)
             {
-                _isCooked = true;
+                IsCooked = true;
             }
         }
 
@@ -69,19 +77,28 @@ namespace InteractableFeature.Runtime
         {
             Ingredient = null;
             _cookPercentage = 0;
+            m_onCookValueChanged?.Invoke(this, _cookPercentage);
             _sauce.SetActive(false);
         }
 
         private void Burn()
         {
-            _isCooked = false;
+            IsCooked = false;
             _meshRenderer.material.color = _burnedColor;
+        }
+
+        public Ingredient GetSoup()
+        {
+            Clear();
+            return Instantiate(_soupPrefab).GetComponent<Ingredient>();
         }
         
         #endregion
 
         
         #region Private and Protected Members
+        
+        [SerializeField] private GameObject _soupPrefab; 
 
         [SerializeField] private GameObject _sauce;
         [SerializeField] private Color _sauceColor;
