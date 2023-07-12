@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameManagerFeature.Runtime;
+using InteractableFeature.Runtime;
 using UnityEngine;
 
 namespace OrderFeature.Runtime
@@ -74,6 +76,45 @@ namespace OrderFeature.Runtime
             yield return new WaitForSeconds(_orderSpawnRate);
             StartCoroutine(SpawnOrder());
 
+        }
+
+        public void CheckPlate(Plate plate)
+        {
+            foreach (var order in m_orderList)
+            {
+                List<IngredientType> requiredCombo = new List<IngredientType>(order.Recipe);
+                foreach (var ingredientInPlate in plate.IngredientCombo)
+                {
+                    if (requiredCombo.Count == 0)
+                    {
+                        FailPlate(plate);
+                        return;
+                    }
+                    
+                    if (!requiredCombo.Contains(ingredientInPlate.Type)) continue;
+                    
+                    requiredCombo.Remove(ingredientInPlate.Type);
+                }
+
+                if (requiredCombo.Count != 0) continue;
+                
+                ValidatePlate(plate);
+                return;
+            }
+
+            FailPlate(plate);
+        }
+
+        private void ValidatePlate(Plate plate)
+        {
+            Destroy(plate.gameObject);
+            ScoreManager.m_instance.AddScore(3);
+        }
+
+        private void FailPlate(Plate plate)
+        {
+            Destroy(plate.gameObject);
+            ScoreManager.m_instance.SubtractScore(1);
         }
 
         public void StopSpawnOrder()
