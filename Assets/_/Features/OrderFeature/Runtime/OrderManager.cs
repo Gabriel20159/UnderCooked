@@ -5,12 +5,17 @@ using UnityEngine;
 
 namespace OrderFeature.Runtime
 {
+    public class OrderIndexEventArg : EventArgs
+    {
+        public int m_index;
+    }
     public class OrderManager : MonoBehaviour
     {
         #region Public Members
 
         public static OrderManager m_instance;
         public EventHandler<EventArgs> m_onOrder;
+        public EventHandler<OrderIndexEventArg> m_onOrderEnded;
 
         public List<ClientOrder> m_orderList;
 
@@ -34,6 +39,18 @@ namespace OrderFeature.Runtime
             StartCoroutine(SpawnOrder());
         }
 
+        private void Update()
+        {
+            foreach (var order in m_orderList)
+            {
+                if (order.TimeRemaining < -5f)
+                {
+                    RemoveFromWaitList(order);
+                }
+                order.TimeRemaining -= Time.deltaTime;
+            }
+        }
+
         #endregion
         
         #region Main Methods
@@ -55,9 +72,13 @@ namespace OrderFeature.Runtime
         {
             StopCoroutine(SpawnOrder());
         }
+        
         public void RemoveFromWaitList(ClientOrder order)
         {
+            int index = m_orderList.IndexOf(order);
             m_orderList.Remove(order);
+
+            m_onOrderEnded?.Invoke(this, new OrderIndexEventArg() { m_index = index });
         }
 
         #endregion
