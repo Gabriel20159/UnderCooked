@@ -69,10 +69,6 @@ namespace HUDFeature.Runtime
         private void Update()
         {
             m_timeSlider.value -= Time.deltaTime;
-            if (m_timeSlider.value<=0)
-            {
-                Destroy(gameObject);
-            }
         }
 
         #endregion Unity API

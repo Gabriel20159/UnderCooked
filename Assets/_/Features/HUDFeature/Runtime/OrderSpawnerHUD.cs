@@ -19,7 +19,13 @@ namespace HUDFeature.Runtime
         {
             OrderManager.m_instance.m_onOrder += OnNewOrderEventHandler;
 
-            //OrderManager.m_instance.m_onOrder += ;
+            OrderManager.m_instance.m_onOrderEnded += OnOrderEndedEventHandler;
+        }
+        void OnOrderEndedEventHandler(object sender, OrderIndexEventArg e)
+        {
+            GameObject order = m_ordersHUD[e.m_index];
+            m_ordersHUD.Remove(order);
+            Destroy(order);
         }
 
         #endregion Unity API
@@ -33,12 +39,7 @@ namespace HUDFeature.Runtime
             m_ordersHUD.Add(order);
         }
 
-        void OnOrder(object sender, EventArgs eventArgs)
-        {
-         //  GameObject order = m_ordersHUD[];
-         //  m_ordersHUD.Remove(order);
-         //  Destroy(order);
-        }
+    
 
         #endregion Main Methods
 
