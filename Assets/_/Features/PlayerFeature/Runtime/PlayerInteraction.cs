@@ -9,6 +9,13 @@ namespace PlayerFeature.Runtime
 {
     public class PlayerInteraction : MonoBehaviour
     {
+	    #region Public Members
+
+	    public EventHandler<bool> m_onHoldPickable;
+	    public EventHandler m_onCutIngredient;
+
+	    #endregion
+	    
 	    #region Unity API
 
 	    private void Start()
@@ -89,12 +96,14 @@ namespace PlayerFeature.Runtime
 		    if (furniture is IngredientSpawner && furniture.CurrentPickable is null && _currentPickable is null)
 		    {
 			    furniture.Interact(_currentPickable);
+			    m_onHoldPickable?.Invoke(this, true);
 		    }
 		    if (furniture.CurrentPickable is not null && _currentPickable is null)
 		    {
 			    _currentPickable = furniture.GetPickable();
 			    _currentPickable.transform.SetParent(_holdAnchor);
 			    _currentPickable.transform.localPosition = Vector3.zero;
+			    m_onHoldPickable?.Invoke(this, true);
 		    }
 		    else if (_currentPickable is not null)
 		    {
@@ -103,6 +112,7 @@ namespace PlayerFeature.Runtime
 				    case Plate plate when _currentPickable is Ingredient ingredient:
 					    plate.AddIngredient(ingredient);
 					    _currentPickable = null;
+					    m_onHoldPickable?.Invoke(this, false);
 					    break;
 				    case null:
 					    furniture.Interact(_currentPickable);
@@ -111,6 +121,7 @@ namespace PlayerFeature.Runtime
 						    return;
 					    }
 					    _currentPickable = null;
+					    m_onHoldPickable?.Invoke(this, false);
 					    break;
 			    }
 		    }
@@ -118,7 +129,8 @@ namespace PlayerFeature.Runtime
 
 	    private void UseChoppingBoard(ChoppingBoard choppingBoard)
 	    {
-		    choppingBoard.ChopIngredient();
+		    if (!choppingBoard.ChopIngredient()) return;
+		    m_onCutIngredient?.Invoke(this, EventArgs.Empty);
 	    }
 
 	    // private void UseSink(Sink sink)

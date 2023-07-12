@@ -36,9 +36,9 @@ namespace InteractableFeature.Runtime
 
     	#region Main Methods
 
-        public void Chop()
+        public bool Chop()
         {
-	        if (_state is not IngredientState.Raw) return;
+	        if (_state is not IngredientState.Raw) return false;
 	        
 	        _chopPercentage += 0.2f;
 	        m_onChopValueChanged?.Invoke(this, _chopPercentage);
@@ -47,6 +47,7 @@ namespace InteractableFeature.Runtime
 	        {
 		        _state = IngredientState.Chopped;
 	        }
+	        return true;
         }
 
     	#endregion

@@ -8,6 +8,8 @@ namespace PlayerFeature.Runtime
     {
     	#region Public Members
 
+        public EventHandler m_onPlayerDash;
+        
     	#endregion
 
 
@@ -36,7 +38,9 @@ namespace PlayerFeature.Runtime
 
         private void HandleDash(object sender, EventArgs e)
         {
+	        if (_moveInput == Vector2.zero) return;
 	        _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _dashStrength, ForceMode.Impulse);
+	        m_onPlayerDash?.Invoke(this, EventArgs.Empty);
         }
         
     	#endregion
