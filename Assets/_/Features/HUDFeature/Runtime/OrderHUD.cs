@@ -21,17 +21,18 @@ namespace HUDFeature.Runtime
 
         #region Unity API
 
-        private void Start()
+        void Start()
         {
-            var ingredientOne = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count -1].Recipe[0];
-            var ingredientTwo = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count-1].Recipe[1];;
+            IngredientType ingredientOne = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].Recipe[0];
+            IngredientType ingredientTwo = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].Recipe[1];
+            ;
 
-            var time = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].TimeRemaining;
-            
+            float time = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].TimeRemaining;
+
             m_timeSlider.minValue = 0;
             m_timeSlider.maxValue = time;
             m_timeSlider.value = m_timeSlider.maxValue;
-            
+
             switch (ingredientOne)
             {
                 case IngredientType.Tomato:
@@ -42,7 +43,7 @@ namespace HUDFeature.Runtime
                     m_orderIngredientOne.sprite = _saladIngredient;
                     break;
             }
-            
+
             switch (ingredientTwo)
             {
                 case IngredientType.Tomato:
@@ -54,7 +55,7 @@ namespace HUDFeature.Runtime
                     break;
             }
 
-            if (ingredientOne == IngredientType.Tomato ||ingredientTwo == IngredientType.Tomato )
+            if (ingredientOne == IngredientType.Tomato || ingredientTwo == IngredientType.Tomato)
             {
                 m_orderImage.sprite = _saladTomato;
 
@@ -63,12 +64,27 @@ namespace HUDFeature.Runtime
             {
                 m_orderImage.sprite = _salad;
             }
-            
+
         }
 
-        private void Update()
+        void Update()
         {
             m_timeSlider.value -= Time.deltaTime;
+
+            Color color = _colorGood;
+            switch (m_timeSlider.value / m_timeSlider.maxValue)
+            {
+                case < 0.25f:
+                    color = _colorBad;
+                    break;
+                case < 0.5f:
+                    color = _colorBof;
+                    break;
+
+            }
+            m_timeSlider.fillRect.GetComponent<Image>().color = color;
+
+
         }
 
         #endregion Unity API
@@ -83,10 +99,22 @@ namespace HUDFeature.Runtime
 
         #region Private and Protected Members
 
-        [SerializeField] private Sprite _tomatoIngredient; 
-        [SerializeField] private Sprite _saladIngredient;
-        [SerializeField] private Sprite _salad;
-        [SerializeField] private Sprite _saladTomato;
+        [SerializeField]
+        Sprite _tomatoIngredient;
+        [SerializeField]
+        Sprite _saladIngredient;
+        [SerializeField]
+        Sprite _salad;
+        [SerializeField]
+        Sprite _saladTomato;
+
+        [Header("Colors")]
+        [SerializeField]
+        Color _colorGood;
+        [SerializeField]
+        Color _colorBof;
+        [SerializeField]
+        Color _colorBad;
 
         #endregion Private and Protected Members
     }
