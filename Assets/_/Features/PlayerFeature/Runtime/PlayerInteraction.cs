@@ -96,6 +96,7 @@ namespace PlayerFeature.Runtime
 			    _currentPickable = furniture.GetPickable();
 			    _currentPickable.transform.SetParent(_holdAnchor);
 			    _currentPickable.transform.localPosition = Vector3.zero;
+			    _currentPickable.transform.localRotation = _holdAnchor.rotation;
 		    }
 		    else if (_currentPickable is not null)
 		    {
@@ -107,12 +108,13 @@ namespace PlayerFeature.Runtime
 					    break;
 				    
 				    case Plate plate when _currentPickable is Saucepan pan:
-					    if (pan.Ingredient != null && !pan.IsCooked) return;
+					    if (!pan.HasIngredient) return;
+					    if (!pan.IsCooked) return;
 					    plate.AddIngredient(pan.GetSoup());
 					    break;
 				    
 				    case Saucepan pan when _currentPickable is Ingredient ingredient:
-					    if (pan.Ingredient != null) break;
+					    if (pan.HasIngredient) break;
 					    if (ingredient.State != IngredientState.Chopped) break;
 					    pan.AddIngredient(ingredient);
 					    _currentPickable = null;
