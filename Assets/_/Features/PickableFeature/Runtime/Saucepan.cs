@@ -56,7 +56,7 @@ namespace InteractableFeature.Runtime
             _cookPercentage += Time.deltaTime / _timeToCook;
             m_onCookValueChanged?.Invoke(this, _cookPercentage);
 
-            if (_cookPercentage >= 1 + (_timeToBurn * _timeToCook))
+            if (_cookPercentage >= 1 + 0.5f)
             {
                 Burn();
             }
@@ -77,6 +77,7 @@ namespace InteractableFeature.Runtime
         {
             Ingredient = null;
             _cookPercentage = 0;
+            _meshRenderer.material.color = _sauceColor;
             m_onCookValueChanged?.Invoke(this, _cookPercentage);
             _sauce.SetActive(false);
         }
