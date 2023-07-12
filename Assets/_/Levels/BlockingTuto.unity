@@ -3748,6 +3748,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Counter (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 3990242001432804628, guid: 1372350fe318f434c84c2d5136f8c32a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1372350fe318f434c84c2d5136f8c32a, type: 3}
 --- !u!4 &1708221212 stripped
