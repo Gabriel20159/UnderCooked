@@ -8,11 +8,7 @@ namespace InteractableFeature.Runtime
 {
     public class Stove : Furniture
     {
-   
-
     	#region Public Members
-
-	
 
     	#endregion
 
@@ -24,13 +20,14 @@ namespace InteractableFeature.Runtime
 
     	#region Main Methods
 
-	    void Update()
-	    {
-		//   if (_currentPickable is Pickable pickable)
-		    {
-			    
-		    }
-	    }
+        void Update()
+        {
+            if (_currentPickable is not Saucepan saucepan) return;
+
+            if (saucepan.Ingredient is null) return;
+
+            saucepan.Cook();
+        }
 
     	#endregion
 
@@ -43,7 +40,5 @@ namespace InteractableFeature.Runtime
     	#region Private and Protected Members
 
     	#endregion
-
-
     }
 }

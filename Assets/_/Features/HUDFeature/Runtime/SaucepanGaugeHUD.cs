@@ -17,7 +17,7 @@ namespace HUDFeature.Runtime
 
         private void Start()
         {
-	       // _ingredient.m_onChopValueChanged += OnGaugeHUDEventHandler;
+	        _saucepan.m_onCookValueChanged += OnGaugeHUDEventHandler;
 	        gameObject.SetActive(false);
         }
 
@@ -42,7 +42,7 @@ namespace HUDFeature.Runtime
 
     	#region Private and Protected Members
 
-      //  [SerializeField] private Ingredient _saucepan;
+        [SerializeField] private Saucepan _saucepan;
 
         #endregion
     }
