@@ -15,11 +15,6 @@ namespace PlayerFeature.Runtime
 
         #endregion
 
-        #region Unity API
-
-
-        #endregion
-
         #region Main Methods
 
         public void StartUsingSink(Sink sink)
@@ -29,26 +24,25 @@ namespace PlayerFeature.Runtime
             sink.StartCleaning();
             // Start Washing Animation
             IsUsingSink = true;
+            _currentSink = sink;
         }
 
-        public void StopUsingSink(Sink sink)
+        public void StopUsingSink()
         {
-            if (!_isUsingSink || sink is null) return;
+            if (!_isUsingSink || _currentSink is null) return;
             
-            sink.StopCleaning();
+            _currentSink.StopCleaning();
             // Stop Washing Animation
             IsUsingSink = false;
+            _currentSink = null;
         }
-
-        #endregion
-
-        #region Utils
-
 
         #endregion
 
         #region Private and Protected Members
 
+        private Sink _currentSink;
+        
         private bool _isUsingSink;
 
         #endregion

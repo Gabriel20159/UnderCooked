@@ -1,4 +1,3 @@
-using System;
 using InputFeature.Runtime;
 using UnityEngine;
 
@@ -11,11 +10,12 @@ namespace PlayerFeature.Runtime
         private void Awake()
         {
 	        _rigidbody = GetComponent<Rigidbody>();
+	        _inputManager = GetComponent<InputManager>();
         }
 
         private void Start()
         {
-	        InputManager.m_instance.m_onMove += MovePlayerEventHandler;
+	        _inputManager.m_onMove += MovePlayerEventHandler;
         }
 
         private void Update()
@@ -25,8 +25,7 @@ namespace PlayerFeature.Runtime
 
         #endregion
 
-
-    	#region Main Methods
+        #region Main Methods
 
         private void MovePlayerEventHandler(object sender, OnMoveEventArgs e)
         {
@@ -47,12 +46,13 @@ namespace PlayerFeature.Runtime
 
         #endregion
         
-        
     	#region Private and Protected Members
 
         [SerializeField] private float _speed;
         [Range(0.01f, 1f)]
         [SerializeField] private float _smoothness;
+
+        private InputManager _inputManager;
         
         private Rigidbody _rigidbody;
 

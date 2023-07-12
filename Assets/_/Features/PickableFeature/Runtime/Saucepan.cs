@@ -23,7 +23,6 @@ namespace InteractableFeature.Runtime
         }
 
         #endregion
-        
 
         #region Main Methods
 
@@ -98,7 +97,6 @@ namespace InteractableFeature.Runtime
         
         #endregion
 
-        
         #region Private and Protected Members
         
         [SerializeField] private GameObject _soupPrefab; 

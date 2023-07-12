@@ -14,7 +14,8 @@ namespace InteractableFeature.Runtime
 	public enum IngredientState
 	{
 		Raw,
-		Chopped
+		Chopped,
+		Soup
 	}
 	
     public class Ingredient : Pickable
@@ -72,7 +73,7 @@ namespace InteractableFeature.Runtime
         [SerializeField] private MeshFilter _meshFilter;
         [SerializeField] private Mesh _meshChopped;
         
-        private IngredientState _state;
+        [SerializeField] private IngredientState _state = IngredientState.Raw;
         
         private float _chopPercentage;
 

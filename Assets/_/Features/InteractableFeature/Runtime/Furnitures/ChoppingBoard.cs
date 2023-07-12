@@ -16,7 +16,7 @@
 
         public bool ChopIngredient()
         {
-            return _currentPickable is Ingredient ingredient && ingredient.Chop();
+            return GetPickable() is Ingredient ingredient && ingredient.Chop();
         }
 
         #endregion

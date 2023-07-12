@@ -21,13 +21,14 @@ namespace PlayerFeature.Runtime
 	    {
 		    _choppingInteraction = GetComponent<PlayerChoppingBoardInteraction>();
 		    _sinkInteraction = GetComponent<PlayerSinkInteraction>();
+		    _inputManager = GetComponentInParent<InputManager>();
 	    }
 
 	    private void Start()
 	    {
-		    InputManager.m_instance.m_onTake += OnInteractionEventHandler;
-		    InputManager.m_instance.m_onUseStarted += OnUseStartedEventHandler;
-		    InputManager.m_instance.m_onUseCanceled += OnUseCanceledEventHandler;
+		    _inputManager.m_onTake += OnInteractionEventHandler;
+		    _inputManager.m_onUseStarted += OnUseStartedEventHandler;
+		    _inputManager.m_onUseCanceled += OnUseCanceledEventHandler;
 	    }
 
 	    private void OnTriggerEnter(Collider other)
@@ -48,7 +49,6 @@ namespace PlayerFeature.Runtime
 
 	    #endregion
 
-
 	    #region Main Methods
 
 	    private void OnInteractionEventHandler(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace PlayerFeature.Runtime
 		    switch (closestInteractable)
 		    {
 			    case Furniture furniture:
-				    InteractWithFurniture(furniture);
+				    TryInteractWithFurniture(furniture);
 				    break;
 		    }
 	    }
@@ -69,21 +69,20 @@ namespace PlayerFeature.Runtime
 	    {
 		    Interactable closestInteractable = GetClosestInteractable();
 
-		    if (closestInteractable is ChoppingBoard choppingBoard)
+		    switch (closestInteractable)
 		    {
-			    _choppingInteraction.UseChoppingBoard(choppingBoard);
-		    }
-		    else if (closestInteractable is Sink sink)
-		    {
-			    _sinkInteraction.StartUsingSink(sink);
-			    _currentSink = sink;
+			    case ChoppingBoard choppingBoard:
+				    _choppingInteraction.UseChoppingBoard(choppingBoard);
+				    break;
+			    case Sink sink:
+				    _sinkInteraction.StartUsingSink(sink);
+				    break;
 		    }
 	    }
 
 	    private void OnUseCanceledEventHandler(object sender, EventArgs e)
 	    {
-		    _sinkInteraction.StopUsingSink(_currentSink);
-		    _currentSink = null;
+		    _sinkInteraction.StopUsingSink();
 	    }
 
 	    private Interactable GetClosestInteractable()
@@ -108,86 +107,92 @@ namespace PlayerFeature.Runtime
 	    /// This whole method is pure garbage.
 	    /// </summary>
 	    /// <param name="furniture"></param>
-	    private void InteractWithFurniture(Furniture furniture)
+	    private void TryInteractWithFurniture(Furniture furniture)
 	    {
-		    if (furniture is IngredientSpawner && furniture.CurrentPickable is null && _currentPickable is null)
+		    Pickable furniturePickable = furniture.GetPickable();
+		    Pickable currentPickable = GetCurrentPickable();
+		    if (furniture is IngredientSpawner && furniturePickable is null && currentPickable is null)
 		    {
-			    furniture.Interact(_currentPickable);
+			    furniture.Interact(null);
+			    furniturePickable = furniture.GetPickable();
+		    }
+		    if ((furniturePickable is not null && currentPickable is null) || (furniture is Sink && currentPickable is null))
+		    {
+			    GetPickableFromFurniture(furniturePickable);
 			    m_onHoldPickable?.Invoke(this, true);
 		    }
-		    if ((furniture.CurrentPickable is not null && _currentPickable is null) || (furniture is Sink && _currentPickable is null))
+		    else if (currentPickable is not null)
 		    {
-			    _currentPickable = furniture.GetPickable();
-			    _currentPickable.transform.SetParent(_holdAnchor);
-			    _currentPickable.transform.localPosition = Vector3.zero;
-			    _currentPickable.transform.localRotation = _holdAnchor.rotation;
-			    m_onHoldPickable?.Invoke(this, true);
-		    }
-		    else if (_currentPickable is not null)
-		    {
-			    switch (furniture.CurrentPickable)
-			    {
-				    case Plate plate when _currentPickable is Ingredient ingredient:
-					    if (plate.AddIngredient(ingredient))
-					    {
-						    _currentPickable = null;
-					    }
-					    break;
-				    
-				    case Plate plate when _currentPickable is Saucepan pan:
-					    if (!pan.HasIngredient) return;
-					    if (!pan.IsCooked) return;
-					    plate.AddIngredient(pan.GetSoup());
-					    break;
-				    
-				    case Saucepan pan when _currentPickable is Ingredient ingredient:
-					    if (pan.HasIngredient) break;
-					    if (ingredient.State != IngredientState.Chopped) break;
-					    pan.AddIngredient(ingredient);
-					    _currentPickable = null;
-					    m_onHoldPickable?.Invoke(this, false);
-					    break;
-				    
-				    case null:
-					    if (furniture is Sink && _currentPickable is not Plate)
-					    {
-						    return;
-					    }
-					    bool destroyCurrentPickable = furniture.Interact(_currentPickable);
-					    if (furniture is IngredientSpawner) // This is pure garbage
-					    {
-						    destroyCurrentPickable = true;
-					    }
-					    if (furniture is TrashCan && _currentPickable is Plate)
-					    {
-						    break;
-					    }
-
-					    if (destroyCurrentPickable)
-					    {
-						    _currentPickable = null;
-                            m_onHoldPickable?.Invoke(this, false);
-                        }
-					    break;
-			    }
+			    UseCurrentPickableOnFurniture(currentPickable, furniturePickable, furniture);
 		    }
 	    }
 
-	    private void UseChoppingBoard(ChoppingBoard choppingBoard)
+	    private void GetPickableFromFurniture(Pickable furniturePickable)
 	    {
+		    furniturePickable.transform.SetParent(_holdAnchor);
+		    furniturePickable.transform.localPosition = Vector3.zero;
+		    furniturePickable.transform.localRotation = _holdAnchor.rotation;
+		    m_onHoldPickable?.Invoke(this, true);
+	    }
+
+	    /// <summary>
+	    /// This one as well.
+	    /// </summary>
+	    /// <param name="currentPickable"></param>
+	    /// <param name="furniturePickable"></param>
+	    /// <param name="furniture"></param>
+	    private void UseCurrentPickableOnFurniture(Pickable currentPickable, Pickable furniturePickable, Furniture furniture)
+	    {
+		    switch (furniturePickable)
+		    {
+			    case Plate plate when currentPickable is Ingredient ingredient:
+				    if (plate.AddIngredient(ingredient))
+					    m_onHoldPickable?.Invoke(this, false);
+				    break;
+				    
+			    case Plate plate when currentPickable is Saucepan pan:
+				    if (!pan.HasIngredient
+				        || !pan.IsCooked) return;
+				    plate.AddIngredient(pan.GetSoup());
+				    break;
+				    
+			    case Saucepan pan when currentPickable is Ingredient ingredient:
+				    if (pan.HasIngredient
+				        || ingredient.State != IngredientState.Chopped) break;
+				    pan.AddIngredient(ingredient);
+				    m_onHoldPickable?.Invoke(this, false);
+				    break;
+				    
+			    case null:
+				    InteractWithFurniture(furniture, currentPickable);
+				    break;
+		    }
+	    }
+
+	    private void InteractWithFurniture(Furniture furniture, Pickable currentPickable)
+	    {
+		    bool isInteractionValidated = furniture.Interact(currentPickable);
+
+		    if (isInteractionValidated || GetCurrentPickable() is not null)
+		    {
+			    m_onHoldPickable?.Invoke(this, false);
+		    }
+	    }
+
+	    private Pickable GetCurrentPickable()
+	    {
+		    return _holdAnchor.GetComponentInChildren<Pickable>();
 	    }
 	    
 	    #endregion
-	    
-	    
+
 	    #region Private and Protected Members
 	    
 	    [SerializeField] private Transform _holdAnchor;
 
-	    private readonly List<Interactable> _interactablesInRange = new();
-	    private Pickable _currentPickable;
+	    private InputManager _inputManager;
 
-	    private Sink _currentSink;
+	    private readonly List<Interactable> _interactablesInRange = new();
 
 	    private PlayerChoppingBoardInteraction _choppingInteraction;
 	    private PlayerSinkInteraction _sinkInteraction;

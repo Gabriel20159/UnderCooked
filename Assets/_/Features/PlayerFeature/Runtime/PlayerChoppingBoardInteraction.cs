@@ -12,11 +12,6 @@ namespace PlayerFeature.Runtime
 
         #endregion
 
-        #region Unity API
-
-
-        #endregion
-
         #region Main Methods
 
         public void UseChoppingBoard(ChoppingBoard choppingBoard)
@@ -25,16 +20,6 @@ namespace PlayerFeature.Runtime
             
             m_onCutIngredient?.Invoke(this, EventArgs.Empty);
         }
-
-        #endregion
-
-        #region Utils
-
-
-        #endregion
-
-        #region Private and Protected Members
-
 
         #endregion
     }

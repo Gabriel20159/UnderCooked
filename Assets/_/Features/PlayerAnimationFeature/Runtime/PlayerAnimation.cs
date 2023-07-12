@@ -7,25 +7,23 @@ namespace PlayerAnimationFeature.Runtime
 {
     public class PlayerAnimation : MonoBehaviour
     {
-    	#region Public Members
 
-		
+        #region Unity API
 
-    	#endregion
-
-
-    	#region Unity API
+        private void Awake()
+        {
+	        _inputManager = GetComponent<InputManager>();
+        }
 
         private void Start()
         {
-	        InputManager.m_instance.m_onMove += OnWalkAnimationEventHandler;
+	        _inputManager.m_onMove += OnWalkAnimationEventHandler;
 	        _playerInteraction.m_onHoldPickable += OnHoldAnimationEventHandler;
 	        _choppingBoardInteraction.m_onCutIngredient += OnCutAnimationEventHandler;
         }
 
         #endregion
-
-
+        
     	#region Main Methods
 
         private void OnWalkAnimationEventHandler(object sender, OnMoveEventArgs e)
@@ -50,8 +48,9 @@ namespace PlayerAnimationFeature.Runtime
 
     	#endregion
 
+        #region Private and Protected Members
 
-    	#region Private and Protected Members
+        private InputManager _inputManager;
 
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerInteraction _playerInteraction;

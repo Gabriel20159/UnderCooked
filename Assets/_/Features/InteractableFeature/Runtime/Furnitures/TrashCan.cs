@@ -1,6 +1,5 @@
 ﻿using _.Features.PickableFeature.Runtime;
 using PickableFeature.Runtime;
-using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
@@ -20,15 +19,16 @@ namespace InteractableFeature.Runtime
 
         public override bool Interact(Pickable pickable)
         {
-            if (pickable is null) return false;
-            
-            if (pickable is Dish dish)
+            switch (pickable)
             {
-                dish.Empty();
-            }
-            else
-            {
-                Destroy(pickable.gameObject);
+                case null:
+                    return false;
+                case Dish dish:
+                    dish.Empty();
+                    break;
+                default:
+                    Destroy(pickable.gameObject);
+                    break;
             }
 
             return true;
