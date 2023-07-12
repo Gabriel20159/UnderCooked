@@ -19,6 +19,7 @@ namespace InputFeature.Runtime
         public EventHandler<OnMoveEventArgs> m_onMove;
         public EventHandler m_onUse;
         public EventHandler m_onTake;
+        public EventHandler m_onDash;
 
         #endregion
 
@@ -55,6 +56,13 @@ namespace InputFeature.Runtime
             m_onTake?.Invoke(this, EventArgs.Empty);
         }
 
+        public void OnDashEventHandler(InputAction.CallbackContext context)
+        {
+            if (!context.started) return;
+
+            m_onDash?.Invoke(this, EventArgs.Empty);
+        }
+
         #endregion
 
 
@@ -69,6 +77,6 @@ namespace InputFeature.Runtime
 
 
 
-    #endregion
+        #endregion
     }
 }
