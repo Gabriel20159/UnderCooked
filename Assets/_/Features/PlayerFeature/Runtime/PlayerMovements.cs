@@ -1,3 +1,4 @@
+using System;
 using InputFeature.Runtime;
 using UnityEngine;
 
@@ -38,14 +39,13 @@ namespace PlayerFeature.Runtime
 
 	        _rigidbody.velocity += movementDirection * (_speed * Time.deltaTime);
 
-	        if (movementDirection != Vector3.zero)
+	        if (_rigidbody.velocity != Vector3.zero)
 	        {
-		        //transform.forward = ;
-		        transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.forward, movementDirection, _smoothness));
+		        transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.forward, _rigidbody.velocity, _smoothness));
 	        }
         }
-        
-    	#endregion
+
+        #endregion
         
         
     	#region Private and Protected Members

@@ -9,6 +9,13 @@ namespace PlayerFeature.Runtime
 {
     public class PlayerInteraction : MonoBehaviour
     {
+	    #region Public Members
+
+	    public EventHandler<bool> m_onHoldPickable;
+	    public EventHandler m_onCutIngredient;
+
+	    #endregion
+	    
 	    #region Unity API
 
 	    private void Awake()
@@ -107,6 +114,7 @@ namespace PlayerFeature.Runtime
 		    if (furniture is IngredientSpawner && furniture.CurrentPickable is null && _currentPickable is null)
 		    {
 			    furniture.Interact(_currentPickable);
+			    m_onHoldPickable?.Invoke(this, true);
 		    }
 		    if ((furniture.CurrentPickable is not null && _currentPickable is null) || (furniture is Sink && _currentPickable is null))
 		    {
@@ -114,6 +122,7 @@ namespace PlayerFeature.Runtime
 			    _currentPickable.transform.SetParent(_holdAnchor);
 			    _currentPickable.transform.localPosition = Vector3.zero;
 			    _currentPickable.transform.localRotation = _holdAnchor.rotation;
+			    m_onHoldPickable?.Invoke(this, true);
 		    }
 		    else if (_currentPickable is not null)
 		    {
@@ -137,6 +146,7 @@ namespace PlayerFeature.Runtime
 					    if (ingredient.State != IngredientState.Chopped) break;
 					    pan.AddIngredient(ingredient);
 					    _currentPickable = null;
+					    m_onHoldPickable?.Invoke(this, false);
 					    break;
 				    
 				    case null:
@@ -157,10 +167,17 @@ namespace PlayerFeature.Runtime
 					    if (destroyCurrentPickable)
 					    {
 						    _currentPickable = null;
-					    }
+                            m_onHoldPickable?.Invoke(this, false);
+                        }
 					    break;
 			    }
 		    }
+	    }
+
+	    private void UseChoppingBoard(ChoppingBoard choppingBoard)
+	    {
+		    if (!choppingBoard.ChopIngredient()) return;
+		    m_onCutIngredient?.Invoke(this, EventArgs.Empty);
 	    }
 	    
 	    #endregion
