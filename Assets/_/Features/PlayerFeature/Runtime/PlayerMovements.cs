@@ -1,3 +1,4 @@
+using System;
 using InputFeature.Runtime;
 using UnityEngine;
 
@@ -40,12 +41,11 @@ namespace PlayerFeature.Runtime
 
 	        if (movementDirection != Vector3.zero)
 	        {
-		        //transform.forward = ;
 		        transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.forward, movementDirection, _smoothness));
 	        }
         }
-        
-    	#endregion
+
+        #endregion
         
         
     	#region Private and Protected Members
