@@ -96,6 +96,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550615213782784961, guid: ace3a871f592e8943aab9a83f736aa47,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2726215242266837108, guid: ace3a871f592e8943aab9a83f736aa47,
         type: 3}
       propertyPath: m_RootOrder
@@ -156,6 +161,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoBox Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7571171829926278210, guid: ace3a871f592e8943aab9a83f736aa47,
+        type: 3}
+      propertyPath: _ingredientPrefab
+      value: 
+      objectReference: {fileID: 7642461216612963615, guid: 21bc95f14756b8740aebb283222832a7,
+        type: 3}
     - target: {fileID: 8133600651750503802, guid: ace3a871f592e8943aab9a83f736aa47,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

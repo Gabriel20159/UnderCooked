@@ -185,6 +185,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1221763800495198614, guid: 1372350fe318f434c84c2d5136f8c32a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2485809605850706374, guid: 1372350fe318f434c84c2d5136f8c32a,
         type: 3}
       propertyPath: m_RootOrder
@@ -250,11 +255,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Counter With Knife Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7653236377534603696, guid: 1372350fe318f434c84c2d5136f8c32a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1372350fe318f434c84c2d5136f8c32a, type: 3}
+--- !u!4 &5178807355474101558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1221763800495198614, guid: 1372350fe318f434c84c2d5136f8c32a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6280905670011409568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6938478677264607656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3990242001432804616, guid: 1372350fe318f434c84c2d5136f8c32a,
     type: 3}
   m_PrefabInstance: {fileID: 6280905670011409568}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6938478677264607668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990242001432804628, guid: 1372350fe318f434c84c2d5136f8c32a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6280905670011409568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6686020228758272866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938478677264607668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b926c7bbda004cca809f8ab9d48916fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerAnchor: {fileID: 5178807355474101558}

@@ -51,13 +51,13 @@ namespace OrderFeature.Runtime
             foreach (var order in m_orderList)
             {
                 order.TimeRemaining -= Time.deltaTime;
-                if (order.TimeRemaining > -5f) return;
+                if (order.TimeRemaining > -5f) continue;
                 ordersToDelete.Add(order);
             }
 
             foreach (var order in ordersToDelete)
             {
-               m_orderList.RemoveAt(m_orderList.IndexOf(order));
+                RemoveFromWaitList(m_orderList[m_orderList.IndexOf(order)]);
             }
         }
 
