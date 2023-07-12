@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1472607634}
   - component: {fileID: 1472607635}
   - component: {fileID: 8985935417906402233}
+  - component: {fileID: 5026143719009789150}
+  - component: {fileID: 957184030973656564}
   m_Layer: 0
   m_Name: InteractibleCollider
   m_TagString: Untagged
@@ -68,6 +70,30 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5026143719009789150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472607631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5956384b564b278793c96312ef9f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &957184030973656564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472607631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c81775be6a74e89ba567bb9a6ccc5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1659005733
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,9 +17,9 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
-            if (pickable is null) return;
+            if (pickable is null) return false;
             
             if (pickable is Plate plate)
             {
@@ -29,6 +29,8 @@ namespace InteractableFeature.Runtime
             {
                 Destroy(pickable.gameObject);
             }
+
+            return true;
         }
 
         #endregion

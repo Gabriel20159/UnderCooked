@@ -15,7 +15,7 @@ namespace InteractableFeature.Runtime
 
     	#region Main Methods
 
-        public abstract void Interact(Pickable pickable);
+        public abstract bool Interact(Pickable pickable);
 
         #endregion
 

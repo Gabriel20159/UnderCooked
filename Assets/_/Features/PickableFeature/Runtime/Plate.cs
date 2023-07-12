@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PickableFeature.Runtime;
 using UnityEngine;
 
@@ -9,9 +8,13 @@ namespace InteractableFeature.Runtime
     {
         #region Public Members
 
-        private EventHandler<float> m_onDirtyValueChanged;
-
         public List<Ingredient> IngredientCombo => _ingredientCombo;
+
+        public float DirtyPercentage
+        {
+            get => _dirtyPercentage;
+            set => _dirtyPercentage = value;
+        }
 
         #endregion
 
@@ -22,18 +25,19 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public void AddIngredient(Ingredient ingredientToAdd)
+        public bool AddIngredient(Ingredient ingredientToAdd)
         {
-            if (_dirtyPercentage > 0) return;
+            if (DirtyPercentage > 0) return false;
             
             IngredientCombo.Add(ingredientToAdd);
             ingredientToAdd.transform.SetParent(_containerAnchor);
             ingredientToAdd.transform.localPosition = new Vector3(0, (IngredientCombo.Count - 1) * 1, 0);
+            return true;
         }
 
         public void Empty()
         {
-            if (_dirtyPercentage > 0) return;
+            if (DirtyPercentage > 0) return;
             
             for (int i = 0; i < _containerAnchor.childCount; i++)
             {
@@ -43,18 +47,21 @@ namespace InteractableFeature.Runtime
             IngredientCombo.Clear();
         }
 
-        public void Wash()
+        public bool IsEmpty()
         {
-            if (_dirtyPercentage <= 0) return;
-            
-            _dirtyPercentage -= 0.2f;
+            return _ingredientCombo.Count == 0;
+        }
 
-            if (_dirtyPercentage < 0)
-            {
-                _dirtyPercentage = 0;
-            }
+        public void Wash(float amount)
+        {
+            if (DirtyPercentage <= 0) return;
             
-            m_onDirtyValueChanged
+            DirtyPercentage -= amount;
+
+            if (DirtyPercentage < 0)
+            {
+                DirtyPercentage = 0;
+            }
         }
 
         #endregion
@@ -62,10 +69,10 @@ namespace InteractableFeature.Runtime
         #region Private and Protected Members
 
         [SerializeField] private Transform _containerAnchor;
+
+        [SerializeField] private float _dirtyPercentage;
         
         private readonly List<Ingredient> _ingredientCombo = new();
-
-        private float _dirtyPercentage;
 
         #endregion
     }

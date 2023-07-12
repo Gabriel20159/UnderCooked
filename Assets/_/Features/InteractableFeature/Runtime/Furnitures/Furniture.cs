@@ -26,16 +26,17 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
-            if (CurrentPickable is not null || pickable is null) return;
+            if (CurrentPickable is not null || pickable is null) return false;
             
             CurrentPickable = pickable;
             pickable.transform.parent = _containerAnchor;
             pickable.transform.localPosition = Vector3.zero;
+            return true;
         }
 
-        public Pickable GetPickable()
+        public virtual Pickable GetPickable()
         {
             Pickable pickable = _containerAnchor.GetComponentInChildren<Pickable>();
             CurrentPickable = null;
