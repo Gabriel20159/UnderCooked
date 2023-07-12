@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _.Features.PickableFeature.Runtime;
 using InputFeature.Runtime;
 using InteractableFeature.Runtime;
 using PickableFeature.Runtime;
@@ -106,14 +107,14 @@ namespace PlayerFeature.Runtime
 					    break;
 				    
 				    case Saucepan pan when _currentPickable is Ingredient ingredient:
-					    if (pan.Ingredient is null) break;
+					    if (pan.Ingredient is not null) break;
 					    pan.AddIngredient(ingredient);
 					    _currentPickable = null;
 					    break;
 				    
 				    case null:
 					    furniture.Interact(_currentPickable);
-					    if (furniture is TrashCan && _currentPickable is Plate)
+					    if (furniture is TrashCan && _currentPickable is Dish)
 					    {
 						    break;
 					    }

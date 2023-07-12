@@ -1,10 +1,10 @@
 using System;
-using PickableFeature.Runtime;
+using _.Features.PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
-    public class Saucepan : Pickable
+    public class Saucepan : Dish
     {
         #region Public Members
 
@@ -31,13 +31,13 @@ namespace InteractableFeature.Runtime
             _meshRenderer.material.color = _sauceColor;
         }
 
-        public void AddIngredient(Ingredient ingredientToAdd)
+        public override void AddIngredient(Ingredient ingredientToAdd)
         {
             if (Ingredient != null && ingredientToAdd.Type != IngredientType.Tomato) return;
             Fill(ingredientToAdd);
         }
 
-        public void Empty()
+        public override void Empty()
         {
             if (Ingredient is null) return;
             Clear();

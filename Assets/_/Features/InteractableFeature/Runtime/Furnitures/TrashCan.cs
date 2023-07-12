@@ -1,4 +1,5 @@
-﻿using PickableFeature.Runtime;
+﻿using _.Features.PickableFeature.Runtime;
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
@@ -21,9 +22,9 @@ namespace InteractableFeature.Runtime
         {
             if (pickable is null) return;
             
-            if (pickable is Plate plate)
+            if (pickable is Dish dish)
             {
-                plate.Empty();
+                dish.Empty();
             }
             else
             {
