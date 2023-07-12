@@ -23,9 +23,7 @@ namespace InteractableFeature.Runtime
         void Update()
         {
             if (_currentPickable is not Saucepan saucepan) return;
-
             if (saucepan.Ingredient is null) return;
-
             saucepan.Cook();
         }
 
