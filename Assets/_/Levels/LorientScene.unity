@@ -1072,12 +1072,12 @@ PrefabInstance:
     - target: {fileID: 4618277337466511161, guid: d032b55de2f908f42b9edb071303bced,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 138.3096
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 4618277337466511161, guid: d032b55de2f908f42b9edb071303bced,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 37.4499
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4618277337466511161, guid: d032b55de2f908f42b9edb071303bced,
         type: 3}
@@ -1139,10 +1139,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4708532043549951106, guid: d032b55de2f908f42b9edb071303bced,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6248923209420577494, guid: d032b55de2f908f42b9edb071303bced,
         type: 3}
       propertyPath: m_Name
       value: CanvasForIngredient
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976539107585169602, guid: d032b55de2f908f42b9edb071303bced,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8948796911597970420, guid: d032b55de2f908f42b9edb071303bced,
         type: 3}
