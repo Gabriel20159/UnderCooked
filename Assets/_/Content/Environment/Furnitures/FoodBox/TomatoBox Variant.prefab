@@ -165,7 +165,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _ingredientPrefab
       value: 
-      objectReference: {fileID: 7642461216612963615, guid: 21bc95f14756b8740aebb283222832a7,
+      objectReference: {fileID: 2177759991703833706, guid: 9cd6c57a620221445acbab37ea26b0d1,
         type: 3}
     - target: {fileID: 8133600651750503802, guid: ace3a871f592e8943aab9a83f736aa47,
         type: 3}

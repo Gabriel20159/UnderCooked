@@ -1,4 +1,5 @@
-﻿using InteractableFeature.Runtime;
+﻿using System;
+using InteractableFeature.Runtime;
 using UnityEngine;
 
 namespace PlayerFeature.Runtime
@@ -6,7 +7,8 @@ namespace PlayerFeature.Runtime
     public class PlayerChoppingBoardInteraction : MonoBehaviour
     {
         #region Public Members
-
+        
+        public EventHandler m_onCutIngredient;
 
         #endregion
 
@@ -19,7 +21,9 @@ namespace PlayerFeature.Runtime
 
         public void UseChoppingBoard(ChoppingBoard choppingBoard)
         {
-            choppingBoard.ChopIngredient();
+            if (!choppingBoard.ChopIngredient()) return;
+            
+            m_onCutIngredient?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion

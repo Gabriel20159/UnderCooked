@@ -37,13 +37,14 @@ namespace InteractableFeature.Runtime
             _meshRenderer.material.color = _sauceColor;
         }
 
-        public override void AddIngredient(Ingredient ingredientToAdd)
+        public override bool AddIngredient(Ingredient ingredientToAdd)
         {
-            if (HasIngredient) return;
-            if (ingredientToAdd.Type != IngredientType.Tomato) return;
-            if (ingredientToAdd.State != IngredientState.Chopped) return;
+            if (HasIngredient
+                || ingredientToAdd.Type != IngredientType.Tomato
+                || ingredientToAdd.State != IngredientState.Chopped) return false;
 
             Fill(ingredientToAdd);
+            return true;
         }
 
         public override void Empty()

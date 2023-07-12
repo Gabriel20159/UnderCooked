@@ -1,6 +1,5 @@
 using System;
 using InputFeature.Runtime;
-using InteractableFeature.Runtime;
 using PlayerFeature.Runtime;
 using UnityEngine;
 
@@ -21,8 +20,7 @@ namespace PlayerAnimationFeature.Runtime
         {
 	        InputManager.m_instance.m_onMove += OnWalkAnimationEventHandler;
 	        _playerInteraction.m_onHoldPickable += OnHoldAnimationEventHandler;
-	        _playerInteraction.m_onCutIngredient += OnCutAnimationEventHandler;
-
+	        _choppingBoardInteraction.m_onCutIngredient += OnCutAnimationEventHandler;
         }
 
         #endregion
@@ -53,18 +51,12 @@ namespace PlayerAnimationFeature.Runtime
     	#endregion
 
 
-    	#region Utils
-
-
-
-    	#endregion
-
-
     	#region Private and Protected Members
 
         [SerializeField] private Animator _animator;
-        [SerializeField] private PlayerDash _playerDash;
         [SerializeField] private PlayerInteraction _playerInteraction;
+
+        [SerializeField] private PlayerChoppingBoardInteraction _choppingBoardInteraction;
 
         #endregion
     }

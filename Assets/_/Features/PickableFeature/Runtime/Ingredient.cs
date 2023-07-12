@@ -7,7 +7,8 @@ namespace InteractableFeature.Runtime
 	public enum IngredientType
 	{
 		Salad,
-		Tomato
+		Tomato,
+		TomatoSoup
 	}
 	
 	public enum IngredientState
@@ -52,7 +53,7 @@ namespace InteractableFeature.Runtime
 	        if (_chopPercentage >= 1)
 	        {
 		        State = IngredientState.Chopped;
-		        GetComponent<MeshFilter>().mesh = _meshChopped;
+		        _meshFilter.mesh = _meshChopped;
 	        }
 	        return true;
         }
@@ -66,6 +67,9 @@ namespace InteractableFeature.Runtime
     	#region Private and Protected Members
 
         [SerializeField] private IngredientType _ingredientType;
+        
+        [Space]
+        [SerializeField] private MeshFilter _meshFilter;
         [SerializeField] private Mesh _meshChopped;
         
         private IngredientState _state;

@@ -25,7 +25,7 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public bool AddIngredient(Ingredient ingredientToAdd)
+        public override bool AddIngredient(Ingredient ingredientToAdd)
         {
             if (DirtyPercentage > 0) return false;
             

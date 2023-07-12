@@ -12,7 +12,6 @@ namespace PlayerFeature.Runtime
 	    #region Public Members
 
 	    public EventHandler<bool> m_onHoldPickable;
-	    public EventHandler m_onCutIngredient;
 
 	    #endregion
 	    
@@ -176,8 +175,6 @@ namespace PlayerFeature.Runtime
 
 	    private void UseChoppingBoard(ChoppingBoard choppingBoard)
 	    {
-		    if (!choppingBoard.ChopIngredient()) return;
-		    m_onCutIngredient?.Invoke(this, EventArgs.Empty);
 	    }
 	    
 	    #endregion

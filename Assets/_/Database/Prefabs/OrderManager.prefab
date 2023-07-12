@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_orderList: []
-  _orderSpawnRate: 1
-  _orderTimer: 5
+  _orderSpawnRate: 5
+  _orderTimer: 15
   _orderTemplate: {fileID: 11400000, guid: 421aa04391ec37c418cf03b0700bfc85, type: 2}
