@@ -121,10 +121,10 @@ namespace PlayerFeature.Runtime
 		    choppingBoard.ChopIngredient();
 	    }
 
-	    // private void UseSink(Sink sink)
-	    // {
-		   //  sink.
-	    // }
+	    private void UseSink(Sink sink)
+	    {
+		    sink.
+	    }
 	    
 	    #endregion
 	    
