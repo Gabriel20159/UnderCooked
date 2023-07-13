@@ -1211,6 +1211,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
+      propertyPath: m_canDoSoup
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: m_soupChance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: _orderSpawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
       propertyPath: m_orderList.Array.size
       value: 2
       objectReference: {fileID: 0}
