@@ -3309,7 +3309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771447185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3757,75 +3757,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 608405232}
     m_Modifications:
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.015
-      objectReference: {fileID: 0}
     - target: {fileID: 4891310807621901272, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655226790603, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655237214917, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655520365448, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655636756245, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586656186531988, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586656198212398, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210957506865593926, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_Name
       value: Stove
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.20932718
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.9056604
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.28311083
       objectReference: {fileID: 0}
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
@@ -3845,7 +3785,7 @@ PrefabInstance:
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.061
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
