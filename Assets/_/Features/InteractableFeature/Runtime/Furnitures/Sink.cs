@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PickableFeature.Runtime;
 using UnityEngine;
 
@@ -58,6 +59,7 @@ namespace InteractableFeature.Runtime
 
             Plate currentPlate = _dirtyPlates[0];
             currentPlate.Wash( 1 / _timeToClean * Time.deltaTime);
+
             if (currentPlate.DirtyPercentage == 0)
             {
                 StopCleaning();
