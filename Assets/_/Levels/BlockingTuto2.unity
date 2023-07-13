@@ -1247,6 +1247,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KitchenSink
       objectReference: {fileID: 0}
+    - target: {fileID: 5399267917231651156, guid: a3a97fa1d7dcf6745ab7c92c98701bec,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6738315153846760359, guid: a3a97fa1d7dcf6745ab7c92c98701bec,
         type: 3}
       propertyPath: m_RootOrder
@@ -5520,6 +5525,11 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3116456622633248656, guid: 258375c26741962438d370e933af3eae,
+        type: 3}
+      propertyPath: _dirtyPercentage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523964883655462204, guid: 258375c26741962438d370e933af3eae,
         type: 3}
       propertyPath: _dirtyPercentage
       value: 0

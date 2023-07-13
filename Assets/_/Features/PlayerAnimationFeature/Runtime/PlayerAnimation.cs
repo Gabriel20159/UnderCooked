@@ -13,6 +13,10 @@ namespace PlayerAnimationFeature.Runtime
         private void Awake()
         {
 	        _inputManager = GetComponent<InputManager>();
+	        _animator = GetComponent<Animator>();
+	        _choppingBoardInteraction = GetComponentInChildren<PlayerChoppingBoardInteraction>();
+	        _playerInteraction = GetComponentInChildren<PlayerInteraction>();
+	        _playerMovements = GetComponent<PlayerMovements>();
         }
 
         private void Start()
@@ -28,7 +32,7 @@ namespace PlayerAnimationFeature.Runtime
 
         private void OnWalkAnimationEventHandler(object sender, OnMoveEventArgs e)
         {
-	        _animator.SetFloat("walk", e.m_direction.magnitude);
+	        _animator.SetFloat("walk", _playerMovements.enabled ? e.m_direction.magnitude : 0);
         }
         
         private void OnCutAnimationEventHandler(object sender, EventArgs e)
@@ -50,12 +54,14 @@ namespace PlayerAnimationFeature.Runtime
 
         #region Private and Protected Members
 
+        private Animator _animator;
+        
         private InputManager _inputManager;
+        
+        private PlayerInteraction _playerInteraction;
+        private PlayerChoppingBoardInteraction _choppingBoardInteraction;
 
-        [SerializeField] private Animator _animator;
-        [SerializeField] private PlayerInteraction _playerInteraction;
-
-        [SerializeField] private PlayerChoppingBoardInteraction _choppingBoardInteraction;
+        private PlayerMovements _playerMovements;
 
         #endregion
     }

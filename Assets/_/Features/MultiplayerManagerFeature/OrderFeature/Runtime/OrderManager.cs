@@ -23,6 +23,8 @@ namespace OrderFeature.Runtime
 
         public List<ClientOrder> m_orderList;
 
+        public bool m_canDoSoup;
+        public int m_soupChance;
         #endregion
         
         #region Unity API
@@ -135,6 +137,7 @@ namespace OrderFeature.Runtime
 
         private void OnPlateSent(Plate plate)
         {
+            plate.transform.SetParent(null);
             Destroy(plate.gameObject);
             StartCoroutine(InvokeOnPlateSpawnedAfterSeconds(_timeForPlatesToRespawn));
         }
