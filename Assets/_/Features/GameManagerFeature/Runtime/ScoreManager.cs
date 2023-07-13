@@ -22,13 +22,19 @@ namespace GameManagerFeature.Runtime
 
         private void Awake()
         {
-            if (m_instance is not null)
+            if (m_instance == null)
             {
-                Destroy(gameObject);
-                return;
+                m_instance = this;
             }
+            else
+            {  
+                Destroy(gameObject);
+            }
+        }
 
-            m_instance = this;
+        private void Start()
+        {
+            AddScore(0);
         }
 
         #endregion
