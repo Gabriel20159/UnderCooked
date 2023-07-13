@@ -17,13 +17,15 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
             base.Interact(pickable);
-
-            if (_containerAnchor.childCount != 0) return;
             
-            CurrentPickable = Instantiate(_ingredientPrefab, _containerAnchor).GetComponent<Ingredient>();
+            Pickable currentPickable = GetPickable();
+            if (currentPickable is not null) return true;
+            
+            Instantiate(_ingredientPrefab, _containerAnchor);
+            return true;
         }
 
         #endregion

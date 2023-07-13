@@ -1,9 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using PickableFeature.Runtime;
-using UnityEngine;
-
 namespace InteractableFeature.Runtime
 {
     public class Stove : Furniture
@@ -20,10 +14,10 @@ namespace InteractableFeature.Runtime
 
     	#region Main Methods
 
-        void Update()
+        private void Update()
         {
-            if (_currentPickable is not Saucepan saucepan) return;
-            if (saucepan.Ingredient is null) return;
+            if (GetPickable() is not Saucepan saucepan
+                || !saucepan.HasIngredient) return;
             saucepan.Cook();
         }
 

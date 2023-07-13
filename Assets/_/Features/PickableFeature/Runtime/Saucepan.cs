@@ -9,12 +9,6 @@ namespace InteractableFeature.Runtime
         #region Public Members
 
         public EventHandler<float> m_onCookValueChanged;
-        
-        public Ingredient Ingredient
-        {
-            get => _ingredient;
-            set => _ingredient = value;
-        }
 
         public bool IsCooked
         {
@@ -22,8 +16,13 @@ namespace InteractableFeature.Runtime
             set => _isCooked = value;
         }
 
+        public bool HasIngredient
+        {
+            get => _hasIngredient;
+            set => _hasIngredient = value;
+        }
+
         #endregion
-        
 
         #region Main Methods
 
@@ -37,17 +36,19 @@ namespace InteractableFeature.Runtime
             _meshRenderer.material.color = _sauceColor;
         }
 
-        public override void AddIngredient(Ingredient ingredientToAdd)
+        public override bool AddIngredient(Ingredient ingredientToAdd)
         {
-            if (Ingredient == null && ingredientToAdd.Type != IngredientType.Tomato) return;
-            if (ingredientToAdd.State != IngredientState.Chopped) return;
+            if (HasIngredient
+                || ingredientToAdd.Type != IngredientType.Tomato
+                || ingredientToAdd.State != IngredientState.Chopped) return false;
 
             Fill(ingredientToAdd);
+            return true;
         }
 
         public override void Empty()
         {
-            if (Ingredient is null) return;
+            if (!HasIngredient) return;
             Clear();
         }
 
@@ -68,14 +69,14 @@ namespace InteractableFeature.Runtime
 
         private void Fill(Ingredient ingredientToAdd)
         {
-            Ingredient = ingredientToAdd;
-            Destroy(Ingredient.gameObject);
+            HasIngredient = true;
+            Destroy(ingredientToAdd.gameObject);
             _sauce.SetActive(true);
         }
         
         private void Clear()
         {
-            Ingredient = null;
+            HasIngredient = false;
             _cookPercentage = 0;
             _meshRenderer.material.color = _sauceColor;
             m_onCookValueChanged?.Invoke(this, _cookPercentage);
@@ -96,7 +97,6 @@ namespace InteractableFeature.Runtime
         
         #endregion
 
-        
         #region Private and Protected Members
         
         [SerializeField] private GameObject _soupPrefab; 
@@ -107,14 +107,12 @@ namespace InteractableFeature.Runtime
         
         [Tooltip("In seconds")]
         [SerializeField] private float _timeToCook;
-        [Tooltip("In seconds")]
-        [SerializeField] private float _timeToBurn;
 
         private bool _isCooked;
 
         private float _cookPercentage;
         
-        private Ingredient _ingredient;
+        private bool _hasIngredient;
 
         private MeshRenderer _meshRenderer;
 

@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2f34ae655ec434abda24eb539c0465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 1
+  _ingredientType: 2
+  _meshFilter: {fileID: 0}
   _meshChopped: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _state: 2
 --- !u!33 &2177759991703833750
 MeshFilter:
   m_ObjectHideFlags: 0

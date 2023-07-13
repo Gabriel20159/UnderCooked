@@ -3,9 +3,9 @@ using PickableFeature.Runtime;
 
 namespace _.Features.PickableFeature.Runtime
 {
-    public class Dish : Pickable
+    public abstract class Dish : Pickable
     {
-        public virtual void AddIngredient(Ingredient ingredientToAdd) {}
-        public virtual void Empty() {}
+        public abstract bool AddIngredient(Ingredient ingredientToAdd);
+        public abstract void Empty();
     }
 }
