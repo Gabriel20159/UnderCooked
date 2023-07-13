@@ -534,6 +534,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4365728956178260037, guid: 1e3b68a6265d60843ababae8fbf50a00,
+        type: 3}
+      propertyPath: _firstThreshold
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e3b68a6265d60843ababae8fbf50a00, type: 3}
 --- !u!4 &383670028 stripped
@@ -904,6 +909,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OrderManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: _orderTimer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: _orderSpawnRate
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793183, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}

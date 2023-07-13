@@ -997,12 +997,17 @@ PrefabInstance:
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: _orderSpawnRate
-      value: 35
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: _sendDirtyPlates
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: _timeForPlatesToRespawn
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793183, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
@@ -1768,6 +1773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1561868781}
     m_Modifications:
+    - target: {fileID: 9072674947316980978, guid: 22d944720d413bf438f2cc147581c7fb,
+        type: 3}
+      propertyPath: m_gameTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 9072674947316980979, guid: 22d944720d413bf438f2cc147581c7fb,
         type: 3}
       propertyPath: m_RootOrder
