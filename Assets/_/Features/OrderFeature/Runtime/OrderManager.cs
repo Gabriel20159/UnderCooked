@@ -92,6 +92,7 @@ namespace OrderFeature.Runtime
             foreach (var order in m_orderList)
             {
                 List<IngredientType> requiredCombo = new List<IngredientType>(order.Recipe);
+                
                 foreach (var ingredientInPlate in plate.IngredientCombo)
                 {
                     if (requiredCombo.Count == 0)
@@ -99,7 +100,7 @@ namespace OrderFeature.Runtime
                         FailPlate(plate);
                         return;
                     }
-                    
+
                     if (!requiredCombo.Contains(ingredientInPlate.Type)) continue;
                     
                     requiredCombo.Remove(ingredientInPlate.Type);
