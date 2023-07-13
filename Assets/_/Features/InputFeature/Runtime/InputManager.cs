@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 namespace InputFeature.Runtime
 {
-
     public class OnMoveEventArgs : EventArgs
     {
         public Vector2 m_direction;
@@ -14,25 +13,13 @@ namespace InputFeature.Runtime
     {
         #region Public Members
 
-        public static InputManager m_instance;
-
         public EventHandler<OnMoveEventArgs> m_onMove;
-        public EventHandler m_onUse;
+        public EventHandler m_onUseStarted;
+        public EventHandler m_onUseCanceled;
         public EventHandler m_onTake;
         public EventHandler m_onDash;
 
         #endregion
-
-
-        #region Unity API
-
-        private void Awake()
-        {
-            m_instance = this;
-        }
-
-        #endregion
-
 
         #region Main Methods
 
@@ -43,10 +30,14 @@ namespace InputFeature.Runtime
 
         public void OnUseEventHandler(InputAction.CallbackContext context)
         {
-            if (!context.started) return;
-
-            m_onUse?.Invoke(this,EventArgs.Empty);
-            
+            if (context.started)
+            {
+                m_onUseStarted?.Invoke(this,EventArgs.Empty);
+            }
+            else if (context.canceled)
+            {
+                m_onUseCanceled?.Invoke(this,EventArgs.Empty);
+            }
         }
 
         public void OnTakeEventHandler(InputAction.CallbackContext context)
@@ -62,20 +53,6 @@ namespace InputFeature.Runtime
 
             m_onDash?.Invoke(this, EventArgs.Empty);
         }
-
-        #endregion
-
-
-        #region Utils
-
-
-
-        #endregion
-
-
-        #region Private and Protected Members
-
-
 
         #endregion
     }

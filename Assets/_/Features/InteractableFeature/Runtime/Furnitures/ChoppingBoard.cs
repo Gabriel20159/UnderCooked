@@ -14,12 +14,9 @@
 
         #region Main Methods
 
-        public void ChopIngredient()
+        public bool ChopIngredient()
         {
-            if (_currentPickable is Ingredient ingredient)
-            {
-                ingredient.Chop();
-            }
+            return GetPickable() is Ingredient ingredient && ingredient.Chop();
         }
 
         #endregion

@@ -17,12 +17,13 @@ namespace InteractableFeature.Runtime
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
-            if (pickable is Plate plate)
-            {
-                OrderManager.m_instance.CheckPlate(plate);
-            }
+            if (pickable is not Plate plate || plate.IsEmpty()) return false;
+            
+            OrderManager.m_instance.CheckPlate(plate);
+            return true;
+
         }
 
         #endregion

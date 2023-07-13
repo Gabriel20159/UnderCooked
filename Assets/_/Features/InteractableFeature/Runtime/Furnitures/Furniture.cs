@@ -7,39 +7,28 @@ namespace InteractableFeature.Runtime
     {
         #region Public Members
 
-        public Pickable CurrentPickable
-        {
-            get => _currentPickable;
-            set => _currentPickable = value;
-        }
-
         #endregion
 
         #region Unity API
-
-        private void Awake()
-        {
-            _currentPickable = _containerAnchor.GetComponentInChildren<Pickable>();
-        }
 
         #endregion
 
         #region Main Methods
 
-        public override void Interact(Pickable pickable)
+        public override bool Interact(Pickable pickable)
         {
-            if (CurrentPickable is not null || pickable is null) return;
+            Pickable currentPickable = GetPickable();
+            if (currentPickable is not null || pickable is null) return false;
             
-            CurrentPickable = pickable;
             pickable.transform.parent = _containerAnchor;
             pickable.transform.localPosition = Vector3.zero;
+            pickable.transform.localRotation = _containerAnchor.rotation;
+            return true;
         }
 
-        public Pickable GetPickable()
+        public virtual Pickable GetPickable()
         {
-            Pickable pickable = _containerAnchor.GetComponentInChildren<Pickable>();
-            CurrentPickable = null;
-            return pickable;
+            return _containerAnchor.GetComponentInChildren<Pickable>();
         }
 
         #endregion
@@ -51,8 +40,6 @@ namespace InteractableFeature.Runtime
         #region Private and Protected Members
 
         [SerializeField] protected Transform _containerAnchor;
-
-        protected Pickable _currentPickable;
 
         #endregion
     }

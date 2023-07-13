@@ -7,13 +7,15 @@ namespace InteractableFeature.Runtime
 	public enum IngredientType
 	{
 		Salad,
-		Tomato
+		Tomato,
+		TomatoSoup
 	}
 	
 	public enum IngredientState
 	{
 		Raw,
-		Chopped
+		Chopped,
+		Soup
 	}
 	
     public class Ingredient : Pickable
@@ -28,6 +30,12 @@ namespace InteractableFeature.Runtime
 	        set => _ingredientType = value;
         }
 
+        public IngredientState State
+        {
+	        get => _state;
+	        set => _state = value;
+        }
+
         #endregion
 
     	#region Unity API
@@ -36,17 +44,19 @@ namespace InteractableFeature.Runtime
 
     	#region Main Methods
 
-        public void Chop()
+        public bool Chop()
         {
-	        if (_state is not IngredientState.Raw) return;
+	        if (_state is not IngredientState.Raw) return false;
 	        
 	        _chopPercentage += 0.2f;
 	        m_onChopValueChanged?.Invoke(this, _chopPercentage);
 
 	        if (_chopPercentage >= 1)
 	        {
-		        _state = IngredientState.Chopped;
+		        State = IngredientState.Chopped;
+		        _meshFilter.mesh = _meshChopped;
 	        }
+	        return true;
         }
 
     	#endregion
@@ -59,7 +69,11 @@ namespace InteractableFeature.Runtime
 
         [SerializeField] private IngredientType _ingredientType;
         
-        private IngredientState _state;
+        [Space]
+        [SerializeField] private MeshFilter _meshFilter;
+        [SerializeField] private Mesh _meshChopped;
+        
+        [SerializeField] private IngredientState _state = IngredientState.Raw;
         
         private float _chopPercentage;
 

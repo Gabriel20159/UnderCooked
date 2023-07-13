@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 181366343343218871, guid: fdd87fb123e00814cb6c080dc79b6381,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5846834037864731181, guid: fdd87fb123e00814cb6c080dc79b6381,
         type: 3}
       propertyPath: m_Name
-      value: Salad
+      value: Tomato
       objectReference: {fileID: 0}
     - target: {fileID: 5846834037864731344, guid: fdd87fb123e00814cb6c080dc79b6381,
         type: 3}
@@ -67,5 +72,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5846834037864731347, guid: fdd87fb123e00814cb6c080dc79b6381,
+        type: 3}
+      propertyPath: _meshChopped
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 7680355408082952517, guid: fdd87fb123e00814cb6c080dc79b6381,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1340541719380434750, guid: 9da20384a72bafd4ba5e77eaa896ccd6,
+        type: 3}
+    - target: {fileID: 8550041466650689075, guid: fdd87fb123e00814cb6c080dc79b6381,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e38b4bcd2911e424bbf915644a684dc8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd87fb123e00814cb6c080dc79b6381, type: 3}

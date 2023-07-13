@@ -23,13 +23,14 @@ namespace GameManagerFeature.Runtime
 
         private void Awake()
         {
-            if (m_instance is not null)
+            if (m_instance == null)
+            {
+                m_instance = this;
+            }
+            else
             {
                 Destroy(gameObject);
-                return;
             }
-
-            m_instance = this;
         }
 
         private void Start()
@@ -39,24 +40,18 @@ namespace GameManagerFeature.Runtime
 
         private void Update()
         {
-            if (_timeLeft > 0)
+            if (!(_timeLeft > 0)) return;
+            
+            _timeLeft -= Time.deltaTime;
+            m_onTimeChanged?.Invoke(_timeLeft);
+            if (_timeLeft <= 0)
             {
-                _timeLeft -= Time.deltaTime;
-                m_onTimeChanged?.Invoke(_timeLeft);
-                if (_timeLeft <= 0)
-                {
-                    m_onTimeUp?.Invoke();
-                }
+                m_onTimeUp?.Invoke();
             }
         }
 
         #endregion
-        #region Main Methods
-
-        #endregion
-
-        #region Utils
-        #endregion
+        
 
         #region Private and Protected Members
 
