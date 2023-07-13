@@ -44,6 +44,7 @@ namespace OrderFeature.Runtime
         {
             foreach (var order in m_orderList)
             {
+                order.TimeRemaining = _orderTimer;
                 m_onOrder?.Invoke(this, EventArgs.Empty);
             }
             
