@@ -73,6 +73,7 @@ namespace PlayerFeature.Runtime
 		    switch (closestInteractable)
 		    {
 			    case ChoppingBoard choppingBoard:
+				    if (GetCurrentPickable() is not null) break;
 				    _choppingInteraction.UseChoppingBoard(choppingBoard);
 				    break;
 			    case Sink sink:
@@ -103,11 +104,7 @@ namespace PlayerFeature.Runtime
 		    
 		    return closestInteractable;
 	    }
-
-	    /// <summary>
-	    /// This whole method is pure garbage.
-	    /// </summary>
-	    /// <param name="furniture"></param>
+	    
 	    private void TryInteractWithFurniture(Furniture furniture)
 	    {
 		    Pickable furniturePickable = furniture.GetPickable();
@@ -133,17 +130,15 @@ namespace PlayerFeature.Runtime
 		    furniturePickable.transform.localPosition = Vector3.zero;
 		    furniturePickable.transform.localRotation = _holdAnchor.rotation;
 	    }
-
-	    /// <summary>
-	    /// This one as well.
-	    /// </summary>
-	    /// <param name="currentPickable"></param>
-	    /// <param name="furniturePickable"></param>
-	    /// <param name="furniture"></param>
+	    
 	    private void UseCurrentPickableOnFurniture(Pickable currentPickable, Pickable furniturePickable, Furniture furniture)
 	    {
 		    switch (furniturePickable)
 		    {
+			    case Plate plate when furniture is Sink:
+				    InteractWithFurniture(furniture, currentPickable);
+				    break;
+			    
 			    case Plate plate when currentPickable is Ingredient ingredient:
 				    plate.AddIngredient(ingredient);
 				    break;

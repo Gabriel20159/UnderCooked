@@ -492,6 +492,7 @@ MonoBehaviour:
   _saladIngredient: {fileID: 21300000, guid: 9c4990b0c4be6a64883eb8bb663baacf, type: 3}
   _salad: {fileID: 21300000, guid: ee17e5c96d7f8624fa03b45bd1fd476a, type: 3}
   _saladTomato: {fileID: 21300000, guid: 3025201afef10854fb672bf85892d1ee, type: 3}
+  _tomatoSoup: {fileID: 21300000, guid: 63ec1279577aa9245b2b372e5bafe035, type: 3}
   _colorGood: {r: 0.14901961, g: 1, b: 0, a: 1}
   _colorBof: {r: 0.8962264, g: 0.32841736, b: 0, a: 1}
   _colorBad: {r: 1, g: 0, b: 0, a: 1}
