@@ -1,5 +1,4 @@
-﻿using System;
-using OrderFeature.Runtime;
+﻿using OrderFeature.Runtime;
 using PickableFeature.Runtime;
 using UnityEngine;
 
@@ -7,11 +6,6 @@ namespace InteractableFeature.Runtime
 {
     public class PlateReturner : Furniture
     {
-        #region Public Members
-        
-
-        #endregion
-
         #region Unity API
 
         private void Start()
