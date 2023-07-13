@@ -42,12 +42,20 @@ namespace OrderFeature.Runtime
 
         private void Start()
         {
+            foreach (var order in m_orderList)
+            {
+                order.TimeRemaining = _orderTimer;
+                m_onOrder?.Invoke(this, EventArgs.Empty);
+            }
+            
             StartCoroutine(SpawnOrder());
         }
 
         private void Update()
         {
             List<ClientOrder> ordersToDelete = new();
+
+            if (m_orderList.Count == 0) return;
             
             foreach (var order in m_orderList)
             {
@@ -63,6 +71,7 @@ namespace OrderFeature.Runtime
         }
 
         #endregion
+        
         
         #region Main Methods
 
@@ -137,6 +146,7 @@ namespace OrderFeature.Runtime
         public void RemoveFromWaitList(ClientOrder order)
         {
             int index = m_orderList.IndexOf(order);
+            Debug.Log(index);
             m_orderList.Remove(order);
 
             m_onOrderEnded?.Invoke(this, new OrderIndexEventArg() { m_index = index });
