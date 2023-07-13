@@ -23,16 +23,13 @@ namespace HUDFeature.Runtime
 
         void Start()
         {
-            IngredientType ingredientOne = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].Recipe[0];
-            IngredientType ingredientTwo = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].Recipe[1];
-            ;
-
-            float time = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].TimeRemaining;
-
-            m_timeSlider.minValue = 0;
-            m_timeSlider.maxValue = time;
-            m_timeSlider.value = m_timeSlider.maxValue;
-
+            int ingredientsCount = OrderManager.m_instance.m_orderList[^1].Recipe.Length;
+            IngredientType ingredientOne = OrderManager.m_instance.m_orderList[^1].Recipe[0];
+            
+            
+            
+            m_orderImage.sprite = _tomatoSoup;
+            
             switch (ingredientOne)
             {
                 case IngredientType.Tomato:
@@ -43,27 +40,53 @@ namespace HUDFeature.Runtime
                     m_orderIngredientOne.sprite = _saladIngredient;
                     break;
             }
-
-            switch (ingredientTwo)
+            
+            if (ingredientsCount > 1)
             {
-                case IngredientType.Tomato:
-                    m_orderIngredientTwo.sprite = _tomatoIngredient;
-                    break;
 
-                case IngredientType.Salad:
-                    m_orderIngredientTwo.sprite = _saladIngredient;
-                    break;
+                IngredientType ingredientTwo = OrderManager.m_instance.m_orderList[^1].Recipe[1];
+
+                switch (ingredientTwo)
+                {
+                    case IngredientType.Tomato:
+                        m_orderIngredientTwo.sprite = _tomatoIngredient;
+                        break;
+
+                    case IngredientType.Salad:
+                        m_orderIngredientTwo.sprite = _saladIngredient;
+                        break;
+                }
+                
+                
+                if (ingredientOne == IngredientType.Tomato || ingredientTwo == IngredientType.Tomato)
+                {
+                    m_orderImage.sprite = _saladTomato;
+
+                }
+                
+                else
+                {
+                    m_orderImage.sprite = _salad;
+                }
             }
 
-            if (ingredientOne == IngredientType.Tomato || ingredientTwo == IngredientType.Tomato)
-            {
-                m_orderImage.sprite = _saladTomato;
 
-            }
-            else
-            {
-                m_orderImage.sprite = _salad;
-            }
+          
+
+
+            float time = OrderManager.m_instance.m_orderList[OrderManager.m_instance.m_orderList.Count - 1].TimeRemaining;
+
+            m_timeSlider.minValue = 0;
+            m_timeSlider.maxValue = time;
+            m_timeSlider.value = m_timeSlider.maxValue;
+
+
+          
+
+            
+
+
+           
 
         }
 
@@ -107,6 +130,8 @@ namespace HUDFeature.Runtime
         Sprite _salad;
         [SerializeField]
         Sprite _saladTomato;
+        [SerializeField]
+        Sprite _tomatoSoup;
 
         [Header("Colors")]
         [SerializeField]
