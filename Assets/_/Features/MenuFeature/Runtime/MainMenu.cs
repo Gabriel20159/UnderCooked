@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -15,9 +13,9 @@ namespace MenuFeature.Runtime
 
         #region Main Methods
 
-        public void LoadFirstLevel()
+        public void LoadLevel(int index)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(index);
         }
 
         public void SetMasterVolume()

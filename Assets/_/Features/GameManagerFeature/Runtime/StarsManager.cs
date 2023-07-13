@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameManagerFeature.Runtime
@@ -29,19 +27,30 @@ namespace GameManagerFeature.Runtime
 
         private void Awake()
         {
-            if (m_instance is not null)
+            if (m_instance == null)
+            {
+                m_instance = this;
+            }
+            else
             {
                 Destroy(gameObject);
-                return;
             }
+        }
 
-            m_instance = this;
+        private void Start()
+        {
+            ScoreManager.m_instance.OnScoreChanged += OnScoreChangeEvent;
         }
 
         #endregion
         #region Main Methods
 
-        public void UpdateStarCount(int score)
+        private void OnScoreChangeEvent(int value)
+        {
+            UpdateStarCount(value);
+        }
+        
+        private void UpdateStarCount(int score)
         {
             if (score >= _thirdThreshold)
                 _starCount = 3;
@@ -51,18 +60,14 @@ namespace GameManagerFeature.Runtime
                 _starCount = 1;
             else
                 _starCount = 0;
-
-            OnStarCountChanged?.Invoke(_starCount);
         }
 
         #endregion
 
-        #region Utils
-        #endregion
 
         #region Private and Protected Members
 
-        private int _starCount = 0;
+        private int _starCount;
 
         #endregion
 
