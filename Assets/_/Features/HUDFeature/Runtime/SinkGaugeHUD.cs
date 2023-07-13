@@ -1,3 +1,4 @@
+using System;
 using InteractableFeature.Runtime;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,7 +19,8 @@ namespace HUDFeature.Runtime
 
         void Start()
         {
-            _plate.m_onDirtyValueChanged += OnGaugeHUDEventHandler;
+	        _sink.m_onDirtyValueChanged += OnGaugeHUDEventHandler;
+	        _sink.m_onNewPlate += OnNewPlateEventHandler;
             gameObject.SetActive(false);
         }
 
@@ -35,14 +37,19 @@ namespace HUDFeature.Runtime
             gameObject.SetActive(CleanPercentage is not (>= 1 or 0));
         }
 
+        void OnNewPlateEventHandler(object sender, EventArgs e)
+        {
+	        gameObject.SetActive(false);
+        }
+
     	#endregion
 
 
     	#region Private and Protected Members
 
-
+	    
         [SerializeField]
-        Plate _plate;
+        Sink _sink;
 
         #endregion
     }

@@ -1,10 +1,15 @@
-﻿using PickableFeature.Runtime;
+﻿using System;
+using PickableFeature.Runtime;
 using UnityEngine;
 
 namespace InteractableFeature.Runtime
 {
     public class Sink : Furniture
     {
+        
+        public EventHandler<float> m_onDirtyValueChanged;
+        public EventHandler m_onNewPlate;
+        
         #region Unity API
 
         private void Update()
@@ -22,6 +27,7 @@ namespace InteractableFeature.Runtime
             
             pickable.transform.SetParent(_containerAnchor);
             pickable.transform.localPosition = Vector3.up * 0.1f * (_containerAnchor.childCount - 1);
+            m_onNewPlate?.Invoke(null, null);
             return true;
 
         }
@@ -51,6 +57,9 @@ namespace InteractableFeature.Runtime
             }
             
             currentPlate.Wash( 1 / _timeToClean * Time.deltaTime);
+            
+            m_onDirtyValueChanged?.Invoke(this, currentPlate.DirtyPercentage);
+            
             if (currentPlate.DirtyPercentage != 0) return;
             
             StopCleaning();

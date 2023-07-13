@@ -9,7 +9,7 @@ namespace InteractableFeature.Runtime
     {
         #region Public Members
         
-        public EventHandler<float> m_onDirtyValueChanged;
+
         public List<Ingredient> IngredientCombo => _ingredientCombo;
 
         public float DirtyPercentage
@@ -63,7 +63,7 @@ namespace InteractableFeature.Runtime
             
             DirtyPercentage -= amount;
             
-            m_onDirtyValueChanged?.Invoke(this, DirtyPercentage);
+
             
             if (DirtyPercentage == 0)
             {
