@@ -39,6 +39,10 @@ namespace HUDFeature.Runtime
                 case IngredientType.Salad:
                     m_orderIngredientOne.sprite = _saladIngredient;
                     break;
+                
+                case IngredientType.TomatoSoup :
+                    m_orderIngredientOne.sprite = _tomatoIngredient;
+                    break;
             }
             
             if (ingredientsCount > 1)
