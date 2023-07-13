@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 3a6e94a3bf5204c4d89fe70fd985a1bd,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -904,16 +905,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrderManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
-        type: 3}
-      propertyPath: _sendDirtyPlates
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
-        type: 3}
-      propertyPath: _timeForPlatesToRespawn
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793183, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: m_RootOrder
@@ -1302,6 +1293,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1398254967}
     m_Modifications:
+    - target: {fileID: 1620105617886232996, guid: 024894b589eb5f84693c00977f0d9b92,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1291740657}
     - target: {fileID: 3224342853912030983, guid: 024894b589eb5f84693c00977f0d9b92,
         type: 3}
       propertyPath: m_Name
@@ -1752,6 +1748,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1561868781}
     m_Modifications:
+    - target: {fileID: 9072674947316980978, guid: 22d944720d413bf438f2cc147581c7fb,
+        type: 3}
+      propertyPath: m_gameTime
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 9072674947316980979, guid: 22d944720d413bf438f2cc147581c7fb,
         type: 3}
       propertyPath: m_RootOrder
@@ -2563,8 +2564,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291740655}
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 1, y: 10, z: 0.15}
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.86602545}
+  m_LocalPosition: {x: 1, y: 7.6, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3309,7 +3310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771447185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3757,75 +3758,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 608405232}
     m_Modifications:
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4804803643577352291, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.015
-      objectReference: {fileID: 0}
     - target: {fileID: 4891310807621901272, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655226790603, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655237214917, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655520365448, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586655636756245, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586656186531988, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392586656198212398, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210957506865593926, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_Name
       value: Stove
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.20932718
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.9056604
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310044664129350786, guid: f5efa9ed1b4e65840bb4099af732961c,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.28311083
       objectReference: {fileID: 0}
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
@@ -3845,7 +3786,7 @@ PrefabInstance:
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.061
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8843098199988937980, guid: f5efa9ed1b4e65840bb4099af732961c,
         type: 3}
