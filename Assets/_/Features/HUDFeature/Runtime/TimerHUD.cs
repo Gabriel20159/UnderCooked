@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using GameManagerFeature.Runtime;
-using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
+using UnityEngine;
 
 namespace HUDFeature.Runtime
 {
@@ -27,7 +23,7 @@ namespace HUDFeature.Runtime
             float minutes = Mathf.FloorToInt(time / 60);
             float seconds = Mathf.FloorToInt(time % 60);
 
-            _TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            _TimerText.text = $"{minutes:00}:{seconds:00}";
         }
 
         #endregion Unity API

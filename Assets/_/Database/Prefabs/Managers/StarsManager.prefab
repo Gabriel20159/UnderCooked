@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1a10b827ebf454a8c6316145505886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firstThreshold: 3
+  _secondThreshold: 20
+  _thirdThreshold: 30

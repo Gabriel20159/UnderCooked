@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_orderList:
   - {fileID: 11400000, guid: 421aa04391ec37c418cf03b0700bfc85, type: 2}
-  _orderSpawnRate: 20
-  _orderTimer: 15
+  _orderSpawnRate: 45
+  _orderTimer: 45
   _orderTemplate: {fileID: 11400000, guid: 421aa04391ec37c418cf03b0700bfc85, type: 2}
   _timeForPlatesToRespawn: 10
-  _sendDirtyPlates: 0
+  _sendDirtyPlates: 1

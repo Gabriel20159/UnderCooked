@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _.Features.PickableFeature.Runtime;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace InteractableFeature.Runtime
     public class Plate : Dish
     {
         #region Public Members
+        
 
         public List<Ingredient> IngredientCombo => _ingredientCombo;
 
@@ -60,7 +62,9 @@ namespace InteractableFeature.Runtime
             if (DirtyPercentage == 0) return;
             
             DirtyPercentage -= amount;
+            
 
+            
             if (DirtyPercentage == 0)
             {
                 SetModelToClean();

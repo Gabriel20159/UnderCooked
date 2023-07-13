@@ -153,7 +153,6 @@ namespace OrderFeature.Runtime
         public void RemoveFromWaitList(ClientOrder order)
         {
             int index = m_orderList.IndexOf(order);
-            Debug.Log(index);
             m_orderList.Remove(order);
 
             m_onOrderEnded?.Invoke(this, new OrderIndexEventArg() { m_index = index });

@@ -76,6 +76,7 @@ namespace InteractableFeature.Runtime
         
         private void Clear()
         {
+            _burnVFX.SetActive(false);
             HasIngredient = false;
             _cookPercentage = 0;
             _meshRenderer.material.color = _sauceColor;
@@ -87,6 +88,7 @@ namespace InteractableFeature.Runtime
         {
             IsCooked = false;
             _meshRenderer.material.color = _burnedColor;
+            _burnVFX.SetActive(true);
         }
 
         public Ingredient GetSoup()
@@ -101,6 +103,7 @@ namespace InteractableFeature.Runtime
         
         [SerializeField] private GameObject _soupPrefab; 
 
+        [SerializeField] private GameObject _burnVFX; 
         [SerializeField] private GameObject _sauce;
         [SerializeField] private Color _sauceColor;
         [SerializeField] private Color _burnedColor;
