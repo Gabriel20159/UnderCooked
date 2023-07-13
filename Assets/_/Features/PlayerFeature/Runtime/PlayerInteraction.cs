@@ -116,7 +116,7 @@ namespace PlayerFeature.Runtime
 			    furniture.Interact(null);
 			    furniturePickable = furniture.GetPickable();
 		    }
-		    if ((furniturePickable is not null && currentPickable is null) || (furniture is Sink && currentPickable is null))
+		    if ((furniturePickable is not null && currentPickable is null))
 		    {
 			    GetPickableFromFurniture(furniturePickable);
 			    m_onHoldPickable?.Invoke(this, true);
@@ -154,6 +154,7 @@ namespace PlayerFeature.Runtime
 				    if (!pan.HasIngredient
 				        || !pan.IsCooked) return;
 				    plate.AddIngredient(pan.GetSoup());
+				    m_onHoldPickable?.Invoke(this, false);
 				    break;
 				    
 			    case Saucepan pan when currentPickable is Ingredient ingredient:
