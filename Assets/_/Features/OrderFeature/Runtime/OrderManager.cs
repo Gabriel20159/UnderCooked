@@ -108,6 +108,12 @@ namespace OrderFeature.Runtime
                 if (requiredCombo.Count != 0) continue;
                 
                 ValidatePlate(plate);
+                
+                int index = m_orderList.IndexOf(order);
+                m_orderList.Remove(order);
+                
+                m_onOrderEnded?.Invoke(this, new OrderIndexEventArg(){m_index = index});
+                
                 return;
             }
 
