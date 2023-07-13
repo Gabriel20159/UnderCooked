@@ -63,6 +63,7 @@ namespace PlayerFeature.Runtime
 				    TryInteractWithFurniture(furniture);
 				    break;
 		    }
+		    m_onHoldPickable?.Invoke(this, GetCurrentPickable());
 	    }
 
 	    private void OnUseStartedEventHandler(object sender, EventArgs e)
@@ -119,7 +120,6 @@ namespace PlayerFeature.Runtime
 		    if ((furniturePickable is not null && currentPickable is null))
 		    {
 			    GetPickableFromFurniture(furniturePickable);
-			    m_onHoldPickable?.Invoke(this, true);
 		    }
 		    else if (currentPickable is not null)
 		    {
@@ -132,7 +132,6 @@ namespace PlayerFeature.Runtime
 		    furniturePickable.transform.SetParent(_holdAnchor);
 		    furniturePickable.transform.localPosition = Vector3.zero;
 		    furniturePickable.transform.localRotation = _holdAnchor.rotation;
-		    m_onHoldPickable?.Invoke(this, true);
 	    }
 
 	    /// <summary>
@@ -146,22 +145,19 @@ namespace PlayerFeature.Runtime
 		    switch (furniturePickable)
 		    {
 			    case Plate plate when currentPickable is Ingredient ingredient:
-				    if (plate.AddIngredient(ingredient))
-					    m_onHoldPickable?.Invoke(this, false);
+				    plate.AddIngredient(ingredient);
 				    break;
 				    
 			    case Plate plate when currentPickable is Saucepan pan:
 				    if (!pan.HasIngredient
 				        || !pan.IsCooked) return;
 				    plate.AddIngredient(pan.GetSoup());
-				    m_onHoldPickable?.Invoke(this, false);
 				    break;
 				    
 			    case Saucepan pan when currentPickable is Ingredient ingredient:
 				    if (pan.HasIngredient
 				        || ingredient.State != IngredientState.Chopped) break;
 				    pan.AddIngredient(ingredient);
-				    m_onHoldPickable?.Invoke(this, false);
 				    break;
 				    
 			    case null:
@@ -172,12 +168,7 @@ namespace PlayerFeature.Runtime
 
 	    private void InteractWithFurniture(Furniture furniture, Pickable currentPickable)
 	    {
-		    bool isInteractionValidated = furniture.Interact(currentPickable);
-
-		    if (isInteractionValidated || GetCurrentPickable() is not null)
-		    {
-			    m_onHoldPickable?.Invoke(this, false);
-		    }
+		    furniture.Interact(currentPickable);
 	    }
 
 	    private Pickable GetCurrentPickable()

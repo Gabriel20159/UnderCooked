@@ -134,6 +134,7 @@ namespace OrderFeature.Runtime
 
         private void OnPlateSent(Plate plate)
         {
+            plate.transform.SetParent(null);
             Destroy(plate.gameObject);
             StartCoroutine(InvokeOnPlateSpawnedAfterSeconds(_timeForPlatesToRespawn));
         }
