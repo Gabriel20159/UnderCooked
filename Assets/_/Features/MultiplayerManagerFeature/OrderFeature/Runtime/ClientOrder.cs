@@ -19,7 +19,7 @@ namespace OrderFeature.Runtime
             get => _recipe;
             set => _recipe = value;
         }
-
+        
         #endregion
         
 
@@ -27,9 +27,8 @@ namespace OrderFeature.Runtime
         
         private void OnEnable()
         {
-            int randomRecipe = Random.Range(0, 5);
-            
-            Recipe = randomRecipe < 2 ? new IngredientType[1] : new IngredientType[2];
+            int randomRecipe = Random.Range(0, OrderManager.m_instance.m_soupChance);
+            Recipe = (randomRecipe < 1 && OrderManager.m_instance.m_canDoSoup) ? new IngredientType[1] : new IngredientType[2];
             
             for (var index = 0; index < Recipe.Length; index++)
             {
