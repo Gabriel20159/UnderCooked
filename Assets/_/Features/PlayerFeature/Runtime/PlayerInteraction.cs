@@ -72,6 +72,7 @@ namespace PlayerFeature.Runtime
 		    switch (closestInteractable)
 		    {
 			    case ChoppingBoard choppingBoard:
+				    if (GetCurrentPickable() is not null) break;
 				    _choppingInteraction.UseChoppingBoard(choppingBoard);
 				    break;
 			    case Sink sink:
