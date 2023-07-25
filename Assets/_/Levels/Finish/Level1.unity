@@ -992,17 +992,27 @@ PrefabInstance:
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: _orderTimer
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: _orderSpawnRate
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}
       propertyPath: _sendDirtyPlates
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: m_orderList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819696873117793182, guid: 9a57727e4dc4a5147a3c86f190778f54,
+        type: 3}
+      propertyPath: m_orderList.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6819696873117793183, guid: 9a57727e4dc4a5147a3c86f190778f54,
         type: 3}

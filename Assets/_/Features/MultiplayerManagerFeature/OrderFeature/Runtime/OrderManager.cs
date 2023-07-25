@@ -50,7 +50,7 @@ namespace OrderFeature.Runtime
                 m_onOrder?.Invoke(this, EventArgs.Empty);
             }
             
-            StartCoroutine(SpawnOrder());
+            StartCoroutine(SpawnOrderAtSpawnRate());
         }
 
         private void Update()
@@ -74,19 +74,22 @@ namespace OrderFeature.Runtime
 
         #endregion
         
-        
         #region Main Methods
 
-        private IEnumerator SpawnOrder()
+        private IEnumerator SpawnOrderAtSpawnRate()
+        {
+            SpawnOrder();
+            yield return new WaitForSeconds(_orderSpawnRate);
+            StartCoroutine(SpawnOrderAtSpawnRate());
+        }
+
+        private void SpawnOrder()
         {
             ClientOrder order = Instantiate(_orderTemplate, transform);
             order.TimeRemaining = _orderTimer;
             m_orderList.Add(order);
             
             m_onOrder?.Invoke(this, EventArgs.Empty);
-            
-            yield return new WaitForSeconds(_orderSpawnRate);
-            StartCoroutine(SpawnOrder());
         }
 
         public void CheckPlate(Plate plate)
@@ -137,6 +140,11 @@ namespace OrderFeature.Runtime
 
         private void OnPlateSent(Plate plate)
         {
+            if (m_orderList.Count <= 2)
+            {
+                SpawnOrder();
+            }
+            
             plate.transform.SetParent(null);
             Destroy(plate.gameObject);
             StartCoroutine(InvokeOnPlateSpawnedAfterSeconds(_timeForPlatesToRespawn));
@@ -150,7 +158,7 @@ namespace OrderFeature.Runtime
 
         public void StopSpawnOrder()
         {
-            StopCoroutine(SpawnOrder());
+            StopCoroutine(SpawnOrderAtSpawnRate());
         }
         
         public void RemoveFromWaitList(ClientOrder order)
